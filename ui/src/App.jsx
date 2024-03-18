@@ -1,46 +1,32 @@
-import './style.css';
+import Homepage from './Homepage.jsx';
 import Listing from './Listing.jsx';
-
-class Homepage extends React.Component {
-	constructor() {
-	super();
-	}
-	render(){
-	return (
-	<div>
-		<h5>Placeholder for Homepage</h5>
-	</div>);
-	}
-}
+import Add from './Add.jsx';
 
 class CaiFanKaki extends React.Component {
   constructor() {
     super();
-    this.state = { travellers: [], selector: 1};
+    this.state = {selector: 1};
    // this.bookTraveller = this.bookTraveller.bind(this);
- 
-  }
+    }
 
-  setSelector(value)
-  {
-	  this.setState({selector: value});
-  }
+    setSelector(value)
+    {
+        this.setState({selector: value});
+    }
   
-  render() {
+    render() {
     return (
-    <div>
+    <div className="text-center">
         <h1>CaiFan Kaki</h1>
 	    <div>
-            <button onClick={()=>this.setSelector(1)}>Homepage</button>
-            <button onClick={()=>this.setSelector(2)}>Listing</button>
+            <button className="btn btn-success m-2" onClick={()=>this.setSelector(1)}>Homepage</button>
+            <button className="btn btn-success m-2" onClick={()=>this.setSelector(2)}>Show places</button>
+            <button className="btn btn-success m-2" onClick={()=>this.setSelector(3)}>Add places</button>
             
 	    </div>
-        {
-            this.state.selector === 1? <Homepage />:<hr/>
-        }
-        {
-            this.state.selector === 2? <Listing />:<hr/>
-        }
+        {this.state.selector === 1? <Homepage />:<></>}
+        {this.state.selector === 2? <Listing />:<></>}
+        {this.state.selector === 3? <Add />:<></>}
      
     </div>
     );
