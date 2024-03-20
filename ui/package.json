@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon -w server server.js",
-        "compile": "nodemon -w src -e jsx --exec npx webpack && --exec babel src --out-dir public",
+        "compile": "npx webpack",
         "watch": "babel src --out-dir public --watch --verbose",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -21,6 +21,7 @@
         "express": "^4.16.4",
         "graphql": "^0.13.2",
         "mongodb": "^3.7.3",
+        "node-fetch": "^3.3.2",
         "nodemon": "^1.18.9",
         "webpack-cli": "^5.1.4"
     },
