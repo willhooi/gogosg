@@ -17,7 +17,7 @@ class CaiFanKaki extends React.Component {
   
     render() {
     return (
-    <div className="text-center">
+    <div className="row">
         <h1>CaiFan Kaki</h1>
 	    <div>
             <button className="btn btn-success m-2" onClick={()=>this.setSelector(1)}>Homepage</button>

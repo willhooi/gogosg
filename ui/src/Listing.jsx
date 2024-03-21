@@ -48,7 +48,7 @@ export default class Listing extends React.Component {
 
 	async listplaces(){
 
-		const response = await fetch('https://api.stb.gov.sg/content/food-beverages/v2/search?searchType=keyword&searchValues=%22hawker%20food%22',{
+		const response = await fetch('https://api.stb.gov.sg/content/food-beverages/v2/search?searchType=keyword&searchValues=%22hawker%20food%22&sort=name&sortOrder=asc',{
 			method: 'GET',
       		headers: { 
 				'Content-Type': 'application/json',
@@ -69,15 +69,8 @@ export default class Listing extends React.Component {
 	<div>
 		<h5>Placeholder for Listing</h5>
 		<div>
-			<button className="btn btn-primary m-2"onClick={()=>this.listplaces()}>List</button>
-
-		</div>
-		
-		<div>
 			<ShowPlaces places={this.state.places} />
-		
 		</div>
-
 	</div>);
 	}
 }
