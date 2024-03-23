@@ -23,6 +23,7 @@
         "mongodb": "^3.7.3",
         "node-fetch": "^3.3.2",
         "nodemon": "^1.18.9",
+        "react": "^16.14.0",
         "webpack-cli": "^5.1.4"
     },
     "devDependencies": {

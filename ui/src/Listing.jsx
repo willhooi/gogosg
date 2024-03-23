@@ -1,5 +1,3 @@
-import gqlfetch from "./graphql";
-
 
 function PlacesRow(props) {
 	const place = props.place;
@@ -9,6 +7,7 @@ function PlacesRow(props) {
 		<td>{`${place.address.streetName}, ${place.address.postalCode}`}</td>
 		<td>{place.description}</td>
 		<td>{place.rating}</td>
+		<td></td>
 	  </tr>
 	);
   }
@@ -39,11 +38,12 @@ function PlacesRow(props) {
 export default class Listing extends React.Component {
 	constructor() {
 	super();
-	this.state = {places: []};
+	this.state = {places: [],imageURL:''};
 	}
 
 	componentDidMount(){
 		this.listplaces();
+		
 	}
 
 	async listplaces(){
@@ -65,6 +65,7 @@ export default class Listing extends React.Component {
 
 
 	render(){
+
 	return (
 	<div>
 		<h5>Placeholder for Listing</h5>

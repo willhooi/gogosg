@@ -1,3 +1,4 @@
+//for future use
 export default function ReviewCard(props) {
 	const place = props.place;
 

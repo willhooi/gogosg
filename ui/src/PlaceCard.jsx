@@ -1,16 +1,19 @@
+import './PlaceCard.css';
+
+
 export default function PlaceCard(props) {
 	const place = props.place;
-
+	
 	return (
-	  <div className="card">
+	  <div className="card-container">
 		<div className="card-body row">
-			<div className="col-2">Image Placeholder</div>
-			<div className="col-4">
-				<h5 className="card-title">{place.name}</h5>
-				<p className="card-text">{`${place.address.streetName}, ${place.address.postalCode}`}</p>
-				<p className="card-text">{place.description}</p>
+			<div className="col-3">Image Placeholder</div>
+			<div className="col-2">
+				<h5 className="card-place">{place.name}</h5>
+				<p className="card-address">{`${place.address.streetName}, ${place.address.postalCode}`}</p>
+				<p className="card-description">{place.description}</p>
 			</div>
-            <div className="col-4">
+            <div className="card-reviews col-5">
                 {place.reviews && place.reviews.length > 0 ? (
                     <ul>
                         {place.reviews.map((review,index)=>(
@@ -20,8 +23,10 @@ export default function PlaceCard(props) {
                 ): ('No reviews available')
                 }
             </div>
-			<div className="col-2">
-				<p className="card-text">Rating: {place.rating}</p>
+			<div className="col-1">
+				<p className="card-rating">Rating: {place.rating}</p>
+			</div>
+			<div onClick = {(()=> props.handleFavClick)} className="overlay d-flex align-items-center justify-content row">
 			</div>
 		</div>
 	  </div>
