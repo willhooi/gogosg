@@ -3,6 +3,8 @@ import './PlaceCard.css';
 
 export default function PlaceCard(props) {
 	const place = props.place;
+	const FavouriteComponent = props.favComponent;
+
 	
 	return (
 	  <div className="card-container">
@@ -26,7 +28,8 @@ export default function PlaceCard(props) {
 			<div className="col-1">
 				<p className="card-rating">Rating: {place.rating}</p>
 			</div>
-			<div onClick = {(()=> props.handleFavClick)} className="overlay d-flex align-items-center justify-content row">
+			<div className="overlay d-flex align-items-center justify-content row">
+				<FavouriteComponent />
 			</div>
 		</div>
 	  </div>

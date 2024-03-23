@@ -3,9 +3,11 @@ import AddFavourite from "./components/AddFavourite.jsx";
 
 
 export default function ShowPlaces(props) {
+	const favComponent = props.favouriteComponent;
+	
 
 	const placeCards = props.places.map((place, index) => (
-	  <PlaceCard key={index} place={place} favouriteComponent = {AddFavourite}/>
+	  <PlaceCard key={index} place={place} favouriteComponent = {AddFavourite} favComponent ={favComponent}/>
 	));
   
 	return (
