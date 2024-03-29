@@ -1,10 +1,9 @@
 import ShowPlaces from "./ShowPlaces.jsx";
-import AddFavourite from "./components/AddFavourite.jsx";
 
 export default class Search extends React.Component {
 	constructor() {
 	super();
-	this.state = {searchplaces: [], favourites: []};
+	this.state = {searchplaces: []};
     this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
@@ -40,7 +39,7 @@ export default class Search extends React.Component {
 	render(){
 	return (
 	<div className="container m-2">
-		<h5>Placeholder for Search</h5>
+		<h5>Search for Food Item</h5>
 		
 		<div className="row m-2">
             <div> 
@@ -49,8 +48,9 @@ export default class Search extends React.Component {
                     <button className="btn btn-secondary m-2">Search</button>
                 </form>
             </div>
-            <div><ShowPlaces places={this.state.searchplaces} favouriteComponent = {AddFavourite}/></div>
-				
+            <div>
+				<ShowPlaces places={this.state.searchplaces} />
+			</div>	
 		</div>
 
 	</div>);
