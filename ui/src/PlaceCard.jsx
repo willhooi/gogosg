@@ -1,21 +1,6 @@
 import './PlaceCard.css';
+import fetchImage from './components/fetchImage.jsx';
 
-function fetchImage(imgUuid, plcUuid, handler) {
-    const timestamp = new Date().getTime();
-    if (imgUuid.length > 0 && imgUuid[0].uuid) {
-        fetch(`https://api.stb.gov.sg/media/download/v2/${imgUuid[0].uuid}?fileType=Medium%20Thumbnail&_=${timestamp}`, {
-            method: 'GET',
-            headers: {
-                'X-API-Key': 'gS8i7oE7GLfMLZnnA0tZOwXTNSDgPqwB',
-            },
-        })
-        .then(res => res.blob())
-        .then(blob => handler(blob, plcUuid))
-        .catch(error => console.error('Error fetching image', error));
-    } else {
-        console.log('No image found');
-    }
-}
 
 export default function PlaceCard(props) {
     const place = props.place;
@@ -63,6 +48,9 @@ export default function PlaceCard(props) {
                 <div className="col-md-1">
                     <p className="card-rating">Rating: {place.rating}</p>
                 </div>
+            </div>
+            <div className='card-fav row'>
+                <button className='btn btn-success'>Add Favourite </button>
             </div>
         </div>
     );
