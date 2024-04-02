@@ -2,6 +2,7 @@ import Homepage from './Homepage.jsx';
 import Listing from './Listing.jsx';
 import Add from './Add.jsx';
 import Search from './Search.jsx';
+import DisplayFav from './DisplayFav.jsx';
 
 class CaiFanKaki extends React.Component {
   constructor() {
@@ -24,12 +25,14 @@ class CaiFanKaki extends React.Component {
             <button className="btn btn-success m-2" onClick={()=>this.setSelector(2)}>Show places</button>
             <button className="btn btn-success m-2" onClick={()=>this.setSelector(3)}>Add places</button>
             <button className="btn btn-success m-2" onClick={()=>this.setSelector(4)}>Search</button>
+            <button className="btn btn-success m-2" onClick={()=>this.setSelector(5)}>Display Favourites</button>
             
 	    </div>
         {this.state.selector === 1? <Homepage />:<></>}
         {this.state.selector === 2? <Listing />:<></>}
         {this.state.selector === 3? <Add />:<></>}
         {this.state.selector === 4? <Search />:<></>}
+        {this.state.selector === 5? <DisplayFav />:<></>}
      
     </div>
     );

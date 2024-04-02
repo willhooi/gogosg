@@ -1,5 +1,6 @@
 import './PlaceCard.css';
 import fetchImage from './components/fetchImage.jsx';
+import AddFav from './AddFav.jsx';
 
 
 export default function PlaceCard(props) {
@@ -48,9 +49,9 @@ export default function PlaceCard(props) {
                 <div className="col-md-1">
                     <p className="card-rating">Rating: {place.rating}</p>
                 </div>
-            </div>
-            <div className='card-fav row'>
-                <button className='btn btn-success'>Add Favourite </button>
+                <div className='card-fav row'>
+                    <AddFav favourite={place}/>
+                </div>
             </div>
         </div>
     );
