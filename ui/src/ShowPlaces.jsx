@@ -6,7 +6,7 @@ export default function ShowPlaces(props) {
 	const placeCards = props.places.map((place, index) => (
 	  <PlaceCard 
 	  	key={index} 
-		place={place} 
+		place={place}
 		/>
 	));
   

@@ -3,8 +3,9 @@ import ShowPlaces from "./ShowPlaces.jsx";
 export default class Search extends React.Component {
 	constructor() {
 	super();
-	this.state = {searchplaces: []};
+	//this.state = {searchplaces: []};
     this.handleSubmit = this.handleSubmit.bind(this);
+
 	}
 
     handleSubmit(e) {
@@ -13,29 +14,11 @@ export default class Search extends React.Component {
         const searchplace = {
           name: form.searchitem.value,
         }
-        this.searchplaces(searchplace);
+        this.props.searchplaces(searchplace);
         form.searchitem.value = "";
       }
 
-	async searchplaces(args){
-        console.log(args);
-
-		const response = await fetch('https://api.stb.gov.sg/content/food-beverages/v2/search?searchType=keyword&searchValues='+args.name+'&sort=name&sortOrder=asc',{
-			method: 'GET',
-      		headers: { 
-				'Content-Type': 'application/json',
-				'Host': 'api.stb.gov.sg',
-				'Accept': 'application/json',
-				'X-Content-Language':'en',
-				'X-API-Key':'gS8i7oE7GLfMLZnnA0tZOwXTNSDgPqwB',
-				},
-		});
-		const data = await response.json();	
-		this.setState({searchplaces : data.data });
-		console.log(this.state.searchplaces);
-		};
-
-
+	
 	render(){
 	return (
 	<div className="container m-2">
@@ -49,7 +32,7 @@ export default class Search extends React.Component {
                 </form>
             </div>
             <div>
-				<ShowPlaces places={this.state.searchplaces} />
+				<ShowPlaces places={this.props.places}/>
 			</div>	
 		</div>
 

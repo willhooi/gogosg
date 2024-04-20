@@ -1,41 +1,61 @@
+import {Switch, Route, Redirect,} from 'react-router-dom';
+import {HashRouter as Router} from 'react-router-dom';
 import Homepage from './Homepage.jsx';
 import Listing from './Listing.jsx';
 import Add from './Add.jsx';
 import Search from './Search.jsx';
-import DisplayFav from './DisplayFav.jsx';
+
+import './css/App.css';
 
 class CaiFanKaki extends React.Component {
   constructor() {
     super();
-    this.state = {selector: 1};
-   // this.bookTraveller = this.bookTraveller.bind(this);
+    this.state = {searchplaces: []};
+    this.searchplaces = this.searchplaces.bind(this);
     }
 
-    setSelector(value)
-    {
-        this.setState({selector: value});
-    }
+  async searchplaces(args){
+      console.log(args);
+
+      const response = await fetch('https://api.stb.gov.sg/content/food-beverages/v2/search?searchType=keyword&searchValues='+args.name+'&sort=name&sortOrder=asc',{
+        method: 'GET',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Host': 'api.stb.gov.sg',
+          'Accept': 'application/json',
+          'X-Content-Language':'en',
+          'X-API-Key':'gS8i7oE7GLfMLZnnA0tZOwXTNSDgPqwB',
+          },
+      });
+      const data = await response.json();	
+      this.setState({searchplaces : data.data });
+      console.log(this.state.searchplaces);
+    };
   
-    render() {
+  render() {
     return (
-    <div className="row">
-        <h1>CaiFan Kaki</h1>
-	    <div>
-            <button className="btn btn-success m-2" onClick={()=>this.setSelector(1)}>Homepage</button>
-            <button className="btn btn-success m-2" onClick={()=>this.setSelector(2)}>Show places</button>
-            <button className="btn btn-success m-2" onClick={()=>this.setSelector(3)}>Add places</button>
-            <button className="btn btn-success m-2" onClick={()=>this.setSelector(4)}>Search</button>
-            <button className="btn btn-success m-2" onClick={()=>this.setSelector(5)}>Display Favourites</button>
-            
-	    </div>
-        {this.state.selector === 1? <Homepage />:<></>}
-        {this.state.selector === 2? <Listing />:<></>}
-        {this.state.selector === 3? <Add />:<></>}
-        {this.state.selector === 4? <Search />:<></>}
-        {this.state.selector === 5? <DisplayFav />:<></>}
-     
-    </div>
-    );
+      <div className="row">
+          <h1>CaiFan Kaki</h1>
+        <div>
+              <button className="btn btn-success m-2"><a href="/#/home">Homepage</a></button>
+              <button className="btn btn-success m-2"><a href="/#/showplaces">Show places</a></button>
+              <button className="btn btn-success m-2"><a href="/#/addplaces">Add places</a></button>
+              <button className="btn btn-success m-2"><a href="/#/search">Search</a></button>
+              
+        </div>
+        <Router>
+          <Switch>
+            <Redirect exact from="/" to="/home" />
+            <Route path="/home" component={Homepage} />
+            <Route path="/showplaces" component={Listing} />
+            <Route path="/addplaces" component={Add} />
+            <Route path="/search" render={
+              (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />
+            }/>
+          </Switch>
+        </Router>
+      </div>
+      );
   }
 }
 

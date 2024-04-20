@@ -1,10 +1,23 @@
-import './PlaceCard.css';
-import fetchImage from './components/fetchImage.jsx';
-import AddFav from './AddFav.jsx';
-
+import './css/PlaceCard.css';
 
 export default function PlaceCard(props) {
     const place = props.place;
+
+    const fetchImage = (imgUuid, plcUuid, handler) => {
+        if (imgUuid.length > 0 && imgUuid[0].uuid) {
+            fetch(`https://api.stb.gov.sg/media/download/v2/${imgUuid[0].uuid}?fileType=Medium%20Thumbnail`, {
+                method: 'GET',
+                headers: {
+                    'X-API-Key': 'gS8i7oE7GLfMLZnnA0tZOwXTNSDgPqwB',
+                },
+            })
+            .then(res => res.blob())
+            .then(blob => handler(blob, plcUuid))
+            .catch(error => console.error('Error fetching image', error));
+        } else {
+            console.log('No image found');
+        }
+    }
 
     const fetchAndSetImage = () => {
         fetchImage(place.images, place.uuid, handler);
@@ -23,6 +36,7 @@ export default function PlaceCard(props) {
                 }
                 element.appendChild(img);
             }
+            
         };
     };
 
@@ -48,9 +62,6 @@ export default function PlaceCard(props) {
                 </div>
                 <div className="col-md-1">
                     <p className="card-rating">Rating: {place.rating}</p>
-                </div>
-                <div className='card-fav row'>
-                    <AddFav favourite={place}/>
                 </div>
             </div>
         </div>
