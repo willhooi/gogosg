@@ -11,8 +11,7 @@ type Place {
   created: GraphQLDate!
 }
 
-"Toned down Issue, used as inputs, without server generated values."
-input IssueInputs {
+input PlaceInputs {
   name: String!
  
 }
@@ -26,6 +25,6 @@ type Query {
 
 type Mutation {
   setAboutMessage(message: String!): String
-  placeAdd(place: IssueInputs!): Place!
+  placeAdd(place: PlaceInputs!): Place!
   addToFavlist(nameInput: String!): String
 }

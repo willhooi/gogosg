@@ -6,7 +6,7 @@
     "scripts": {
         "old_start": "nodemon -w server server.js",
         "start": "nodemon -w server -e js,graphql server/server.js",
-        "compile": "npx webpack",
+        "compile": "npx webpack && mongo caifantracker scripts/init.mongo.js",
         "watch": "babel src --out-dir public --watch --verbose",
         "test": "echo \"Error: no test specified\" && exit 1"
     },

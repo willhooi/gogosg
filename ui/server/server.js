@@ -53,6 +53,7 @@ const resolvers = {
 async function addToFavlist(_, {nameInput}) {
 
   const result = await db.collection('favlist').insertOne({name: nameInput});
+  console.log(result);
 }
 
 function setAboutMessage(_, { message }) {

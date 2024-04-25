@@ -1,4 +1,6 @@
 import './css/PlaceCard.css';
+import graphQLFetch from './graphqlfetch.js';
+
 
 export default function PlaceCard(props) {
     const place = props.place;
@@ -41,6 +43,18 @@ export default function PlaceCard(props) {
     };
 
     fetchAndSetImage();
+    
+    //ADD TO DB USING GRAPHQLFETCH
+    const addFavPlace = async (place)=> {
+        const mutation = `
+        mutation addToFavlist($name: String!) 
+        {
+          addToFavlist(nameInput: $name)
+      }
+      `;
+      await graphQLFetch(mutation, {name: place});
+      };
+   
 
     return (
         <div className="card-container">
@@ -62,6 +76,11 @@ export default function PlaceCard(props) {
                 </div>
                 <div className="col-md-1">
                     <p className="card-rating">Rating: {place.rating}</p>
+                </div>
+                <div>
+                    <button className="btn btn-success" onClick={()=>addFavPlace(place.name)}>
+                        Add to Favourite
+                    </button>
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ class CaiFanKaki extends React.Component {
       });
       const data = await response.json();	
       this.setState({searchplaces : data.data });
-      console.log(this.state.searchplaces);
+      //console.log(this.state.searchplaces);
     };
   
   render() {
