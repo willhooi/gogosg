@@ -1,0 +1,31 @@
+scalar GraphQLDate
+
+
+type Place {
+  _id: ID!
+  id: Int!
+  name: String!
+  description: String!
+  review: String
+  rating: Int
+  created: GraphQLDate!
+}
+
+"Toned down Issue, used as inputs, without server generated values."
+input IssueInputs {
+  name: String!
+ 
+}
+
+##### Top level declarations
+
+type Query {
+  about: String!
+  placeList: [Place!]!
+}
+
+type Mutation {
+  setAboutMessage(message: String!): String
+  placeAdd(place: IssueInputs!): Place!
+  addToFavlist(nameInput: String!): String
+}

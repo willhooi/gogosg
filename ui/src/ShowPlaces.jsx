@@ -1,6 +1,5 @@
 import PlaceCard from "./PlaceCard.jsx";
 
-
 export default function ShowPlaces(props) {
 
 	const placeCards = props.places.map((place, index) => (
