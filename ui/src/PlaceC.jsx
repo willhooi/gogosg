@@ -1,10 +1,13 @@
 import './css/PlaceCard.css';
 import graphQLFetch from './graphqlfetch.js';
 
-
 export default class PlaceCard extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            favourite: [],
+            buttonClicked: false
+        };
         this.fetchImage = this.fetchImage.bind(this);
         this.handler = this.handler.bind(this);
         this.addFavPlace = this.addFavPlace.bind(this);
@@ -42,8 +45,7 @@ export default class PlaceCard extends React.Component {
                     element.removeChild(element.firstChild);
                 }
                 element.appendChild(img);
-            }
-            
+            } 
         };
     };
 
@@ -60,7 +62,8 @@ export default class PlaceCard extends React.Component {
           addToFavlist(nameInput: $name)
       }
       `;
-      await graphQLFetch(mutation, {name: place});
+        await graphQLFetch(mutation, {name: place});
+        this.setState({favourite: place, buttonClicked: true});
       };
    
 
@@ -87,8 +90,12 @@ export default class PlaceCard extends React.Component {
                     <p className="card-rating">Rating: {this.props.place.rating}</p>
                 </div>
                 <div>
-                    <button className="btn btn-success" onClick={()=>this.addFavPlace(this.props.place.name)}>
-                        Add to Favourite
+                    <button 
+                        className="btn btn-success" 
+                        onClick={()=>this.addFavPlace(this.props.place.name)}
+                        disabled = {this.state.buttonClicked}
+                    >
+                        {this.state.buttonClicked ? "Added to Favourites" : "Add to Favourite"}
                     </button>
                 </div>
             </div>

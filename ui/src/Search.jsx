@@ -3,7 +3,6 @@ import ShowPlaces from "./ShowPlaces.jsx";
 export default class Search extends React.Component {
 	constructor() {
 	super();
-	//this.state = {searchplaces: []};
     this.handleSubmit = this.handleSubmit.bind(this);
 
 	}
