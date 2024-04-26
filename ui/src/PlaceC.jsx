@@ -89,7 +89,7 @@ export default class PlaceCard extends React.Component {
                 <div className="col-md-1">
                     <p className="card-rating">Rating: {this.props.place.rating}</p>
                 </div>
-                <div>
+                <div className="button-container">
                     <button 
                         className="btn btn-success" 
                         onClick={()=>this.addFavPlace(this.props.place.name)}
