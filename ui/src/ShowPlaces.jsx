@@ -1,9 +1,10 @@
-import PlaceCard from "./PlaceCard.jsx";
+//import PlaceCard from "./PlaceCard.jsx";
+import PlaceC from "./PlaceC.jsx";
 
 export default function ShowPlaces(props) {
 
 	const placeCards = props.places.map((place, index) => (
-	  <PlaceCard 
+	  <PlaceC 
 	  	key={index} 
 		place={place}
 		/>

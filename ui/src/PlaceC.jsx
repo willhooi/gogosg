@@ -1,10 +1,16 @@
 import './css/PlaceCard.css';
 import graphQLFetch from './graphqlfetch.js';
 
-export default function PlaceCard(props) {
-    const place = props.place;
 
-    const fetchImage = (imgUuid, plcUuid, handler) => {
+export default class PlaceCard extends React.Component {
+    constructor(props){
+        super(props);
+        this.fetchImage = this.fetchImage.bind(this);
+        this.handler = this.handler.bind(this);
+        this.addFavPlace = this.addFavPlace.bind(this);
+    }
+
+    fetchImage = (imgUuid, plcUuid, handler) => {
         if (imgUuid.length > 0 && imgUuid[0].uuid) {
             fetch(`https://api.stb.gov.sg/media/download/v2/${imgUuid[0].uuid}?fileType=Medium%20Thumbnail`, {
                 method: 'GET',
@@ -20,11 +26,11 @@ export default function PlaceCard(props) {
         }
     }
 
-    const fetchAndSetImage = () => {
-        fetchImage(place.images, place.uuid, handler);
+    async fetchAndSetImage(){
+        await this.fetchImage(this.props.place.images, this.props.place.uuid, this.handler);
     };
 
-    const handler = (blob, plcUuid) => {
+    handler = (blob, plcUuid) => {
         const url = URL.createObjectURL(blob);
         const img = new Image();
         img.src = url;
@@ -41,10 +47,13 @@ export default function PlaceCard(props) {
         };
     };
 
-    fetchAndSetImage();
+    componentDidMount(){
+        this.fetchAndSetImage();
+
+    };
     
     //ADD TO DB USING GRAPHQLFETCH
-    const addFavPlace = async (place)=> {
+    async addFavPlace(place){
         const mutation = `
         mutation addToFavlist($name: String!) 
         {
@@ -55,33 +64,36 @@ export default function PlaceCard(props) {
       };
    
 
-    return (
-        <div className="card-container">
+    render(){
+        return(
+            <div className="card-container">
             <div className="card-body row">
-                <div id={place.uuid} className="card-image col-md-4"></div>
+                <div id={this.props.place.uuid} className="card-image col-md-4"></div>
                 <div className="d-flex flex-column col-md-2">
-                    <h5 className="card-place">{place.name}</h5>
-                    <p className="card-address">{`${place.address.streetName}, ${place.address.postalCode}`}</p>
-                    <p className="card-description">{place.description}</p>
+                    <h5 className="card-place">{this.props.place.name}</h5>
+                    <p className="card-address">{`${this.props.place.address.streetName}, ${this.props.place.address.postalCode}`}</p>
+                    <p className="card-description">{this.props.place.description}</p>
                 </div>
                 <div className="card-reviews col-md-5">
-                    {place.reviews && place.reviews.length > 0 ? (
+                    {this.props.place.reviews && this.props.place.reviews.length > 0 ? (
                         <ul>
-                            {place.reviews.map((review, index) => (
+                            {this.props.place.reviews.map((review, index) => (
                                 <li key={index}>{review.text}</li>
                             ))}
                         </ul>
                     ) : ('No reviews available')}
                 </div>
                 <div className="col-md-1">
-                    <p className="card-rating">Rating: {place.rating}</p>
+                    <p className="card-rating">Rating: {this.props.place.rating}</p>
                 </div>
                 <div>
-                    <button className="btn btn-success" onClick={()=>addFavPlace(place.name)}>
+                    <button className="btn btn-success" onClick={()=>this.addFavPlace(this.props.place.name)}>
                         Add to Favourite
                     </button>
                 </div>
             </div>
         </div>
-    );
+
+        );
+    }
 }
