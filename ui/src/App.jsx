@@ -1,7 +1,8 @@
 import {Switch, Route, Redirect,} from 'react-router-dom';
 import {HashRouter as Router} from 'react-router-dom';
 import Homepage from './Homepage.jsx';
-import Listing from './Listing.jsx';
+import Display from './Display.jsx';
+//import Listing from './Listing.jsx';
 import Add from './Add.jsx';
 import Search from './Search.jsx';
 
@@ -47,7 +48,7 @@ class CaiFanKaki extends React.Component {
           <Switch>
             <Redirect exact from="/" to="/home" />
             <Route path="/home" component={Homepage} />
-            <Route path="/showplaces" component={Listing} />
+            <Route path="/showplaces" component={Display} />
             <Route path="/addplaces" component={Add} />
             <Route path="/search" render={
               (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />

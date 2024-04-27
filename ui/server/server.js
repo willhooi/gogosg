@@ -40,7 +40,7 @@ const GraphQLDate = new GraphQLScalarType({
 const resolvers = {
   Query: {
     about: () => aboutMessage,
-    placeList,
+    listFavourites,
   },
   Mutation: {
     setAboutMessage,
@@ -64,7 +64,7 @@ function setAboutMessage(_, { message }) {
   return aboutMessage = message;
 }
 
-async function placeList() {
+async function listFavourites() {
   const places = await db.collection('places').find({}).toArray();
   return places;
 }
