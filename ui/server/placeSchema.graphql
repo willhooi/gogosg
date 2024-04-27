@@ -1,0 +1,38 @@
+scalar GraphQLDate
+
+type Place {
+   _id: ID!
+  id: Int!
+  name: String!
+  description: String
+  review: String
+  rating: Float
+}
+
+input PlaceInputs {
+  name: String!
+}
+
+input PlaceDetailsInputs {
+  name: String!
+  review: String
+  description: String
+  rating: Float
+
+}
+
+##### Top level declarations
+
+type Query {
+  about: String!
+  placeList: [Place!]!
+  favouriteList: [Place!]
+  listFavourites: [Place!]
+}
+
+type Mutation {
+  setAboutMessage(message: String!): String
+  placeAdd(place: PlaceInputs!): Place!
+  placeDetailsAdd(placeDetails: PlaceDetailsInputs!): Place!
+  addFavouritePlace(placeDetails: PlaceDetailsInputs!): Boolean
+}

@@ -2,7 +2,6 @@ import {Switch, Route, Redirect,} from 'react-router-dom';
 import {HashRouter as Router} from 'react-router-dom';
 import Homepage from './Homepage.jsx';
 import Display from './Display.jsx';
-//import Listing from './Listing.jsx';
 import Add from './Add.jsx';
 import Search from './Search.jsx';
 

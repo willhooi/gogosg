@@ -1,4 +1,3 @@
-//import PlaceCard from "./PlaceCard.jsx";
 import PlaceC from "./PlaceC.jsx";
 
 export default function ShowPlaces(props) {
