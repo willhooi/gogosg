@@ -53,8 +53,10 @@ export default class PlaceCard extends React.Component {
     };
     
     //ADD TO DB USING GRAPHQLFETCH
-      async addFavPlaceDetails(place){
-        console.log(place);
+    
+   
+    async addFavPlaceDetails(place){
+       // console.log(place);
         const query = `
         mutation addFavouritePlace($placeDetails: PlaceDetailsInputs!) 
         {
@@ -62,16 +64,16 @@ export default class PlaceCard extends React.Component {
         }   
       `;
       //construct the input data
-      const { name, reviews, rating, description} = place;
+      const { name, reviews, rating, description, type} = place;
       const review = reviews && reviews.length > 0 ? reviews[0].text : 'No reviews available';
       const created = new Date();
-      const placeDetails = { name, review, rating, description, created};
+      const placeDetails = { name, review, rating, description, created, type};
       const res = await graphQLFetch(query, {placeDetails});
       console.log('Added ok:',res.addFavouritePlace);
       this.setState({buttonClicked: true});
       };
-   
-    render(){
+      
+      render(){
         return(
             <div className="card-container">
             <div className="card-body row">

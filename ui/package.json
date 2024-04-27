@@ -5,10 +5,13 @@
     "main": "index.js",
     "scripts": {
         "old_start": "nodemon -w server server.js",
+        "startdb" : "systemctl start mongod",
+        "stopdb" : "systemctl stop mongod",
         "start": "nodemon -w server -e js,graphql server/server.js",
         "compile": "npx webpack && mongo caifantracker scripts/init.mongo.js",
         "watch": "babel src --out-dir public --watch --verbose",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "systemctl start mongod & npm run compile && npm start"
     },
     "repository": {
         "type": "git",

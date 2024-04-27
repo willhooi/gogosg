@@ -8,6 +8,7 @@ type Place {
   review: String
   rating: Float
   created: GraphQLDate
+  type: String
 }
 
 input PlaceInputs {
@@ -20,17 +21,16 @@ input PlaceDetailsInputs {
   description: String
   rating: Float
   created: GraphQLDate
+  type: String
 
 }
 
 ##### Top level declarations
 
 type Query {
-  about: String!
   listFavourites: [Place!]
 }
 
 type Mutation {
-  setAboutMessage(message: String!): String
   addFavouritePlace(placeDetails: PlaceDetailsInputs!): Boolean
 }

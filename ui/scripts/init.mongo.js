@@ -16,7 +16,8 @@ const placesDB = [
    description: 'Established since 2021', 
    review: 'This is good!',
    rating: 4.2,
-   created: new Date()
+   created: new Date(),
+   type: 'Restaurant'
   },
  
 ];

@@ -14,10 +14,16 @@ class CaiFanKaki extends React.Component {
     this.searchplaces = this.searchplaces.bind(this);
     }
 
-  async searchplaces(args){
-      console.log(args);
+  async searchplaces(searchItem, searchType){
+     console.log(searchItem, searchType);
 
-      const response = await fetch('https://api.stb.gov.sg/content/food-beverages/v2/search?searchType=keyword&searchValues='+args.name+'&sort=name&sortOrder=asc',{
+     //FORMAT OF API SEARCH
+     //Attraction: https://api.stb.gov.sg/content/attractions/v2/search
+     //F&B: https://api.stb.gov.sg/content/food-beverages/v2/search
+     //Accomodation: https://api.stb.gov.sg/content/accommodation/v2/search
+     //Bar & Clubs: https://api.stb.gov.sg/content/bars-clubs/v2/search
+
+      const response = await fetch('https://api.stb.gov.sg/content/'+searchType+'/v2/search?searchType=keyword&searchValues='+searchItem+'&sort=name&sortOrder=asc',{
         method: 'GET',
         headers: { 
           'Content-Type': 'application/json',
@@ -29,31 +35,31 @@ class CaiFanKaki extends React.Component {
       });
       const data = await response.json();	
       this.setState({searchplaces : data.data });
-      //console.log(this.state.searchplaces);
+      console.log(this.state.searchplaces);
     };
   
   render() {
     return (
       <div className="row">
-          <h1>CaiFan Kaki</h1>
-        <div>
+          <h1 className="text-center">CaiFan Kaki</h1>
+        <div className="col text-center">
               <button className="btn btn-success m-2"><a href="/#/search">Search</a></button>
               <button className="btn btn-success m-2"><a href="/#/showplaces">Show Favourites</a></button>
-              <button className="btn btn-success m-2"><a href="/#/addplaces">Add places</a></button>
-            
-              
+              <button className="btn btn-success m-2"><a href="/#/addplaces">Add places</a></button>    
         </div>
-        <Router>
-          <Switch>
-            <Redirect exact from="/" to="/home" />
-            <Route path="/home" component={Homepage} />
-            <Route path="/showplaces" component={Display} />
-            <Route path="/addplaces" component={Add} />
-            <Route path="/search" render={
-              (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />
-            }/>
-          </Switch>
+        <div>
+          <Router>
+            <Switch>
+              <Redirect exact from="/" to="/home" />
+              <Route path="/home" component={Homepage} />
+              <Route path="/showplaces" component={Display} />
+              <Route path="/addplaces" component={Add} />
+              <Route path="/search" render={
+                (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />
+              }/>
+            </Switch>
         </Router>
+        </div>
       </div>
       );
   }
