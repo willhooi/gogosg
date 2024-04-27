@@ -17,14 +17,29 @@ function PlaceCard(props) {
         cardColorClass = 'card-purple';
     }
     
+    //icons changes depending on type
+    let icontype ='bi-alarm';
+    if (place.type=='Cafe'|| place.type=='Restaurants'||place.type=='Restaurant'){
+        icontype='bi bi-egg-fried';
+    }else if (place.type=='Hotels'){
+        icontype='bi bi-hospital';
+    }else if (place.type=='Nature & Wildlife'){
+        icontype='bi bi-tree';
+    }
+    else {
+        icontype='bi bi-suitcase';
+    }
+    console.log(place.type,icontype);
+
+
     return (
         <div className="col-md-3 mb-3 p-2">
             <div className={`card shadow ${cardColorClass}`}>
                 <div className="card-body">
                     <p className="card-title"><b>{place.name}</b></p>
-                    <p className="card-text mb-1"><i className="font-italic">{place.type}</i></p>
+                    <p className="card-text mb-1"><i>{place.type}</i><i className={`m-3 ${icontype}`}></i></p>
                     <p className="card-text mb-1">{place.description}</p>
-                    <p className="card-text mb-1">Review: "{place.review}"</p>
+                    <p className="card-text mb-1">Review: {place.review}</p>
                     <p className="card-text mb-1">Rating: {place.rating}</p>
                     <p className="card-text mb-0">Added: {createdDate}</p>
                 </div>

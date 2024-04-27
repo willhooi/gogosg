@@ -30,7 +30,7 @@ export default class Search extends React.Component {
       return (
         <div className="container m-2">
           <h5 className="text-center">What's in Singapore?</h5>
-          <p>Search for different attractions or accomodation available in Singapore.
+          <p className="text-center">Search for different attractions or accomodation available in Singapore.
             Check out the different bars & clubs to visit. Don't forget to try our local delights too!
           </p>
   
@@ -54,7 +54,7 @@ export default class Search extends React.Component {
                   placeholder="Search Item"
                   required
                 />
-                <button className="btn btn-secondary m-2">Search</button>
+                <button className="btn btn-danger m-2">Search</button>
               </form>
             </div>
             <div className="scrollable-container">

@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "old_start": "nodemon -w server server.js",
-        "startdb" : "systemctl start mongod",
-        "stopdb" : "systemctl stop mongod",
+        "startdb": "systemctl start mongod",
+        "stopdb": "systemctl stop mongod",
         "start": "nodemon -w server -e js,graphql server/server.js",
         "compile": "npx webpack && mongo caifantracker scripts/init.mongo.js",
         "watch": "babel src --out-dir public --watch --verbose",
@@ -22,6 +22,7 @@
     "homepage": "",
     "dependencies": {
         "apollo-server-express": "^2.26.0",
+        "bootstrap-icons": "^1.11.3",
         "express": "^4.16.4",
         "graphql": "^0.13.2",
         "mongodb": "^3.7.3",

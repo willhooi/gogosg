@@ -7,7 +7,7 @@ import Search from './Search.jsx';
 
 import './css/App.css';
 
-class CaiFanKaki extends React.Component {
+class GoGoSG extends React.Component {
   constructor() {
     super();
     this.state = {searchplaces: []};
@@ -41,11 +41,13 @@ class CaiFanKaki extends React.Component {
   render() {
     return (
       <div className="row">
-          <h1 className="text-center">CaiFan Kaki</h1>
+          <h1 className="text-center">GO GO SG</h1>
+          <p className="text-center">Your Singapore tourism companion web application</p>
+  
         <div className="col text-center">
-              <button className="btn btn-success m-2"><a href="/#/search">Search</a></button>
-              <button className="btn btn-success m-2"><a href="/#/showplaces">Show Favourites</a></button>
-              <button className="btn btn-success m-2"><a href="/#/addplaces">Add places</a></button>    
+              <button className="btn btn-danger m-2"><a href="/#/search">Search</a></button>
+              <button className="btn btn-danger m-2"><a href="/#/showplaces">Show Favourites</a></button>
+              <button className="btn btn-danger m-2"><a href="/#/addplaces">Add places</a></button>    
         </div>
         <div>
           <Router>
@@ -65,6 +67,6 @@ class CaiFanKaki extends React.Component {
   }
 }
 
-const element = <CaiFanKaki />;
+const element = <GoGoSG />;
 
 ReactDOM.render(element, document.getElementById('contents'));
