@@ -12,9 +12,11 @@ db.places.remove({});
 const placesDB = [
   {
    id: 1,
-   name: 'KimChi Express', 
+   name: 'KimChi Express',
+   description: 'Established since 2021', 
    review: 'This is good!',
    rating: 4.2,
+   created: new Date()
   },
  
 ];

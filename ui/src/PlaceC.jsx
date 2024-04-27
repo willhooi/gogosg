@@ -62,9 +62,10 @@ export default class PlaceCard extends React.Component {
         }   
       `;
       //construct the input data
-      const { name, reviews, rating, description } = place;
+      const { name, reviews, rating, description} = place;
       const review = reviews && reviews.length > 0 ? reviews[0].text : 'No reviews available';
-      const placeDetails = { name, review, rating, description };
+      const created = new Date();
+      const placeDetails = { name, review, rating, description, created};
       const res = await graphQLFetch(query, {placeDetails});
       console.log('Added ok:',res.addFavouritePlace);
       this.setState({buttonClicked: true});

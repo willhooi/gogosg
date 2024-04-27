@@ -1,4 +1,5 @@
 import graphQLFetch from "./graphqlfetch.js";
+import './css/Display.css';
 
 function PlacesRow(props) {
 	const place = props.place;
@@ -9,7 +10,6 @@ function PlacesRow(props) {
 		<td>{place.description}</td>
         <td>{place.review}</td>
 		<td>{place.rating}</td>
-		<td></td>
 	  </tr>
 	);
   }
@@ -22,7 +22,7 @@ function ShowPlaces(props) {
 	);
   
 	return (
-	  <table className="col-4 table bordered-table text-center">
+	  <table className="col-4 table bordered-table text-center rounded">
 		<thead>
 		  <tr>
 			<th>No</th>
@@ -51,7 +51,6 @@ export default class Display extends React.Component {
     }
   
     async loadData() {
-        console.log('query started');
       const query = `
       {
         listFavourites {
@@ -72,11 +71,17 @@ export default class Display extends React.Component {
 
     render(){
         return(
-            <div>
-                <h5>Placeholder for Listing</h5>
-                <div>
-                    <ShowPlaces places={this.state.places} />
+            <div className='tableDisplay'>
+                <div className="emptySpace"></div>
+                <div className="displaySpace">
+                    <h5>Favourite List</h5>
+                    <div>
+                        <ShowPlaces places={this.state.places} />
+                    </div>
+                <div className="emptySpace"></div>
                 </div>
+
+                
                 
             </div>)
     }

@@ -1,0 +1,29 @@
+.tableDisplay {
+    display: 'flex';
+    justify-content: 'center';
+    margin:20px;
+    padding: 20px;
+}
+
+.emptySpace {
+    width: '20%';
+}
+
+.displaySpace {
+    font-size: 0.75em;
+    width:'60%';
+}
+
+table.rounded {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table.rounded th,
+table.rounded td {
+    padding:10px;
+}
+
+table.rounded th {
+    background-color: #f2f2f2;
+}

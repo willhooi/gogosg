@@ -7,6 +7,7 @@ type Place {
   description: String
   review: String
   rating: Float
+  created: GraphQLDate
 }
 
 input PlaceInputs {
@@ -18,6 +19,7 @@ input PlaceDetailsInputs {
   review: String
   description: String
   rating: Float
+  created: GraphQLDate
 
 }
 
@@ -25,14 +27,10 @@ input PlaceDetailsInputs {
 
 type Query {
   about: String!
-  placeList: [Place!]!
-  favouriteList: [Place!]
   listFavourites: [Place!]
 }
 
 type Mutation {
   setAboutMessage(message: String!): String
-  placeAdd(place: PlaceInputs!): Place!
-  placeDetailsAdd(placeDetails: PlaceDetailsInputs!): Place!
   addFavouritePlace(placeDetails: PlaceDetailsInputs!): Boolean
 }

@@ -1,21 +1,13 @@
 const fs = require('fs');
 const express = require('express');
-const { ApolloServer, UserInputError } = require('apollo-server-express');
+const { ApolloServer} = require('apollo-server-express');
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 const { MongoClient } = require('mongodb');
 
 const url = 'mongodb://localhost/caifantracker'; //initialize db
 
-// Atlas URL  - replace UUU with user, PPP with password, XXX with hostname
-// const url = 'mongodb+srv://UUU:PPP@cluster0-XXX.mongodb.net/issuetracker?retryWrites=true';
-
-// mLab URL - replace UUU with user, PPP with password, XXX with hostname
-// const url = 'mongodb://UUU:PPP@XXX.mlab.com:33533/issuetracker';
-
 let db;
-
-let aboutMessage = "CaiFan API v1.0";
 
 const GraphQLDate = new GraphQLScalarType({
   name: 'GraphQLDate',
@@ -35,33 +27,28 @@ const GraphQLDate = new GraphQLScalarType({
   },
 });
 
-//MODIFY ACCORDING TO REQUIREMENTS
-
 const resolvers = {
   Query: {
-    about: () => aboutMessage,
     listFavourites,
   },
   Mutation: {
-    setAboutMessage,
-    placeAdd,
     addFavouritePlace,
-  
-    
   },
   GraphQLDate,
 };
 
 async function addFavouritePlace(_, {placeDetails}) {
-  placeDetails.id = await getNextSequence('places');
-  const result = await db.collection('places').insertOne(placeDetails);
-  console.log(result.ops[0]);
-  return true
-}
-
-
-function setAboutMessage(_, { message }) {
-  return aboutMessage = message;
+  //check if already in fav list
+  const favlisted = await db.collection('favlist').findOne({name:placeDetails.name});
+  if (!favlisted){
+    placeDetails.id = await getNextSequence('places');
+    await db.collection('favlist').insertOne({ name: placeDetails.name});
+    const result = await db.collection('places').insertOne(placeDetails);
+    console.log('Added:',result.ops[0]);
+    return true
+  }
+  console.log('Already added to favourites');
+  return false
 }
 
 async function listFavourites() {
@@ -76,31 +63,6 @@ async function getNextSequence(name) {
     { returnOriginal: false },
   );
   return result.value.current;
-}
-/*
-function issueValidate(issue) {
-  const errors = [];
-  if (issue.title.length < 3) {
-    errors.push('Field "title" must be at least 3 characters long.');
-  }
-  if (issue.status === 'Assigned' && !issue.owner) {
-    errors.push('Field "owner" is required when status is "Assigned"');
-  }
-  if (errors.length > 0) {
-    throw new UserInputError('Invalid input(s)', { errors });
-  }
-}
-*/
-
-async function placeAdd(_, { place }) {
-  //issueValidate(issue);
-  place.created = new Date();
-  place.id = await getNextSequence('places');
-
-  const result = await db.collection('places').insertOne(place);
-  const savedPlace = await db.collection('places')
-    .findOne({ _id: result.insertedId });
-  return savedPlace;
 }
 
 //SETUP SERVER FUNCTION

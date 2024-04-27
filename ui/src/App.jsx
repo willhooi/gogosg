@@ -37,10 +37,10 @@ class CaiFanKaki extends React.Component {
       <div className="row">
           <h1>CaiFan Kaki</h1>
         <div>
-              <button className="btn btn-success m-2"><a href="/#/home">Homepage</a></button>
-              <button className="btn btn-success m-2"><a href="/#/showplaces">Show places</a></button>
-              <button className="btn btn-success m-2"><a href="/#/addplaces">Add places</a></button>
               <button className="btn btn-success m-2"><a href="/#/search">Search</a></button>
+              <button className="btn btn-success m-2"><a href="/#/showplaces">Show Favourites</a></button>
+              <button className="btn btn-success m-2"><a href="/#/addplaces">Add places</a></button>
+            
               
         </div>
         <Router>
