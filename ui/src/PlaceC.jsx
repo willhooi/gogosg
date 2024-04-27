@@ -5,12 +5,11 @@ export default class PlaceCard extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            favourite: [],
-            buttonClicked: false
+            buttonClicked: false,
         };
         this.fetchImage = this.fetchImage.bind(this);
         this.handler = this.handler.bind(this);
-        this.addFavPlace = this.addFavPlace.bind(this);
+        //this.addFavPlaceDetails = this.addFavPlaceDetails.bind(this);
     }
 
     fetchImage = (imgUuid, plcUuid, handler) => {
@@ -51,22 +50,26 @@ export default class PlaceCard extends React.Component {
 
     componentDidMount(){
         this.fetchAndSetImage();
-
     };
     
     //ADD TO DB USING GRAPHQLFETCH
-    async addFavPlace(place){
-        const mutation = `
-        mutation addToFavlist($name: String!) 
+      async addFavPlaceDetails(place){
+        console.log(place);
+        const query = `
+        mutation addFavouritePlace($placeDetails: PlaceDetailsInputs!) 
         {
-          addToFavlist(nameInput: $name)
-      }
+           addFavouritePlace(placeDetails: $placeDetails)
+        }   
       `;
-        await graphQLFetch(mutation, {name: place});
-        this.setState({favourite: place, buttonClicked: true});
+      //construct the input data
+      const { name, reviews, rating, description } = place;
+      const review = reviews && reviews.length > 0 ? reviews[0].text : 'No reviews available';
+      const placeDetails = { name, review, rating, description };
+      const res = await graphQLFetch(query, {placeDetails});
+      console.log('Added ok:',res.addFavouritePlace);
+      this.setState({buttonClicked: true});
       };
    
-
     render(){
         return(
             <div className="card-container">
@@ -92,10 +95,10 @@ export default class PlaceCard extends React.Component {
                 <div className="button-container">
                     <button 
                         className="btn btn-success" 
-                        onClick={()=>this.addFavPlace(this.props.place.name)}
+                        onClick={()=>this.addFavPlaceDetails(this.props.place)}
                         disabled = {this.state.buttonClicked}
                     >
-                        {this.state.buttonClicked ? "Added to Favourites" : "Add to Favourite"}
+                        {this.state.buttonClicked ? "Added to Favourites" : "Add to Favourites"}
                     </button>
                 </div>
             </div>

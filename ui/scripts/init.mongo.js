@@ -11,13 +11,10 @@ db.places.remove({});
 
 const placesDB = [
   {
-    id: 1, 
-    name: 'KimChi Express', 
-    address: '1 Suntec City Walk', 
-    description: 'Korean family restaurant serving special K-pop delights',
-    created: new Date(), 
-    review: [],
-    rating: '4.2',
+   id: 1,
+   name: 'KimChi Express', 
+   review: 'This is good!',
+   rating: 4.2,
   },
  
 ];
@@ -39,5 +36,5 @@ db.counters.insert({ _id: 'places', current: count });
 
 db.places.createIndex({ id: 1 }, { unique: true });
 db.places.createIndex({ name: 1 });
-db.places.createIndex({ address: 1 });
-db.places.createIndex({ created: 1 });
+db.places.createIndex({ review: 1 });
+db.places.createIndex({ rating: 1 });

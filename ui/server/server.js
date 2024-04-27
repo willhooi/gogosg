@@ -45,16 +45,20 @@ const resolvers = {
   Mutation: {
     setAboutMessage,
     placeAdd,
-    addToFavlist,
+    addFavouritePlace,
+  
+    
   },
   GraphQLDate,
 };
 
-async function addToFavlist(_, {nameInput}) {
-
-  const result = await db.collection('favlist').insertOne({name: nameInput});
-  console.log(result);
+async function addFavouritePlace(_, {placeDetails}) {
+  placeDetails.id = await getNextSequence('places');
+  const result = await db.collection('places').insertOne(placeDetails);
+  console.log(result.ops[0]);
+  return true
 }
+
 
 function setAboutMessage(_, { message }) {
   return aboutMessage = message;
@@ -108,7 +112,8 @@ async function connectToDb() {
 }
 
 const server = new ApolloServer({
-  typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),
+  //typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),
+  typeDefs: fs.readFileSync('./server/placeSchema.graphql', 'utf-8'),
   resolvers,
   formatError: error => {
     console.log(error);

@@ -1,19 +1,23 @@
 scalar GraphQLDate
 
-
 type Place {
-  _id: ID!
+   _id: ID!
   id: Int!
   name: String!
-  description: String!
+  description: String
   review: String
-  rating: Int
-  created: GraphQLDate!
+  rating: Float
 }
 
 input PlaceInputs {
   name: String!
- 
+}
+
+input PlaceDetailsInputs {
+  name: String!
+  review: String
+  rating: Float
+
 }
 
 ##### Top level declarations
@@ -21,10 +25,12 @@ input PlaceInputs {
 type Query {
   about: String!
   placeList: [Place!]!
+  favouriteList: [Place!]
 }
 
 type Mutation {
   setAboutMessage(message: String!): String
   placeAdd(place: PlaceInputs!): Place!
+  placeDetailsAdd(placeDetails: PlaceDetailsInputs!): Place!
   addToFavlist(nameInput: String!): String
 }
