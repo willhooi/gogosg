@@ -5,7 +5,7 @@ const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb://localhost/caifantracker'; //initialize db
+const url = 'mongodb://localhost/gogosg'; //initialize db
 
 let db;
 

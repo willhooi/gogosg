@@ -8,7 +8,7 @@
         "startdb": "systemctl start mongod",
         "stopdb": "systemctl stop mongod",
         "start": "nodemon -w server -e js,graphql server/server.js",
-        "compile": "npx webpack && mongo caifantracker scripts/init.mongo.js",
+        "compile": "npx webpack && mongo gogosg scripts/init.mongo.js",
         "watch": "babel src --out-dir public --watch --verbose",
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "systemctl start mongod & npm run compile && npm start"

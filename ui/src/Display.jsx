@@ -43,6 +43,11 @@ function PlaceCard(props) {
                     <p className="card-text mb-1">Rating: {place.rating}</p>
                     <p className="card-text mb-0">Added: {createdDate}</p>
                 </div>
+                <div>
+                    <button className="btn btn-secondary buttonContainer">
+                        Remove from Favourite
+                    </button>
+                </div>
             </div>
         </div>
     );

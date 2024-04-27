@@ -6,6 +6,11 @@
     padding: 20px;
 }
 
+.buttonContainer {
+    font-size: 0.75em;
+    justify-content: 'center';
+}
+
 table.rounded {
     border-radius: 10px;
     overflow: hidden;
