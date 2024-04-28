@@ -1,14 +1,12 @@
 /*
- * Run using the mongo shell. For remote databases, ensure that the
- * connection string is supplied in the command line. For example:
- * localhost:
- *   mongo gogosg scripts/init.mongo.js
+ * Initialize DB using
+ * 1. systemctl start mongod
+ * 2. localhost: mongo gogosg scripts/init.mongo.js
  */
 
 db.places.remove({});
 
-//INITIAL DATA -to be modified
-
+//INITIAL DATA
 const placesDB = [
   {
    id: 1,
@@ -19,6 +17,15 @@ const placesDB = [
    created: new Date(),
    type: 'Restaurant'
   },
+  {
+    id: 2,
+    name: 'Final Desti-Nasi',
+    description: 'Kerana anda tiada pilihan', 
+    review: 'Best nasi padang in Singapore',
+    rating: 3.2,
+    created: new Date(),
+    type: 'Hawker'
+   },
  
 ];
 
@@ -26,10 +33,10 @@ db.places.insertMany(placesDB);
 const count = db.places.count();
 print('Inserted', count, 'places');
 
+//initialize favourite list for names
 const initialFavourite = [
     {name: 'Kimchi Express'}, 
-    {name: 'Final Desti-Nasi'}, 
-    {name: 'ZheGe NaGe'}
+    {name: 'Final Desti-Nasi'},  
 ];
 db.favlist.remove({});
 db.favlist.insertMany(initialFavourite);

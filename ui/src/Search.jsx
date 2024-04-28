@@ -6,7 +6,7 @@ export default class Search extends React.Component {
       super();
       this.state = {
         searchType: 'attractions',
-        key:0, 
+        key:0, //keep track of changes
       };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleSearchTypeChange = this.handleSearchTypeChange.bind(this);
@@ -24,7 +24,7 @@ export default class Search extends React.Component {
     handleSearchTypeChange(e) {
       this.setState({
         searchType: e.target.value,
-        key: this.state.key +1,
+        key: this.state.key +1,//use as event listener
       });
     }
 
