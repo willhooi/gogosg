@@ -45,9 +45,10 @@ class GoGoSG extends React.Component {
           <p className="text-center">Your Singapore tourism companion web application</p>
   
         <div className="col text-center">
+              <button className="btn btn-danger m-2"><a href="/#/home">Home</a></button>
               <button className="btn btn-danger m-2"><a href="/#/search">Search</a></button>
-              <button className="btn btn-danger m-2"><a href="/#/showplaces">Show Favourites</a></button>
-              <button className="btn btn-danger m-2"><a href="/#/addplaces">Add places</a></button>    
+              <button className="btn btn-danger m-2"><a href="/#/showplaces">Display</a></button>
+              <button className="btn btn-danger m-2"><a href="/#/addplaces">Add</a></button>    
         </div>
         <div>
           <Router>

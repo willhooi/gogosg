@@ -15,7 +15,8 @@ const placesDB = [
    review: 'This is good!',
    rating: 4.2,
    created: new Date(),
-   type: 'Restaurant'
+   type: 'Restaurant',
+   dataset:'attractions',
   },
   {
     id: 2,
@@ -24,7 +25,8 @@ const placesDB = [
     review: 'Best nasi padang in Singapore',
     rating: 3.2,
     created: new Date(),
-    type: 'Hawker'
+    type: 'Hawker',
+    dataset:'food-beverages',
    },
  
 ];

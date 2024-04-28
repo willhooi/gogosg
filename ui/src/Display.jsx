@@ -5,16 +5,20 @@ function PlaceCard(props) {
     const place = props.place;
     const createdDate = new Date(place.created).toLocaleDateString();
     
-    //colour of card changes depending on ratings
+    //colour of card changes depending on dataset type
     let cardColorClass='';
-    if (place.rating >= 4.7) {
+    //console.log(place.dataset);
+    if (place.dataset == 'attractions') {
         cardColorClass = 'card-orange';
-    } else if (place.rating >= 4.5) {
+    } else if (place.dataset == 'accommodation') {
         cardColorClass = 'card-green';
-    } else if (place.rating >= 4.2) {
-        cardColorClass = 'card-blue';
-    } else {
+    } else if (place.dataset == 'bars-clubs') {
         cardColorClass = 'card-purple';
+    } else if (place.dataset == 'user-gen') {
+        cardColorClass = 'card-blue';
+    }
+    else {
+        cardColorClass = 'card-red';
     }
     
     //icons changes depending on type (https://icons.getbootstrap.com/)
@@ -32,7 +36,7 @@ function PlaceCard(props) {
     //console.log(place.type,icontype);
 
     const deleteFavourite = async()=>{
-        console.log(place.name);
+       // console.log(place.name);
         const query = `
             mutation deleteFavouritePlace($placeName:String){
                 deleteFavouritePlace(placeName:$placeName)
@@ -44,7 +48,6 @@ function PlaceCard(props) {
         if (data){
             props.onDelete(placeName);
         }
-
     }
 
     return (
@@ -58,9 +61,9 @@ function PlaceCard(props) {
                     <p className="card-text mb-1">Rating: {place.rating}</p>
                     <p className="card-text mb-0">Added: {createdDate}</p>
                 </div>
-                <div>
-                    <button className="btn btn-secondary buttonContainer" onClick={deleteFavourite}>
-                        Remove from Favourite
+                <div className="button-container">
+                    <button className="btn btn-danger buttonContainer m-2" onClick={deleteFavourite}>
+                        Remove
                     </button>
                 </div>
             </div>
@@ -77,6 +80,17 @@ export default class Display extends React.Component {
     componentDidMount() {
       this.loadData();
     }
+    //update display when props is received from Add
+    componentDidUpdate(prevProps) {
+        if (this.props.data !== prevProps.data) {
+          if (this.props.data) {
+            this.setState((prevState) => ({
+              places: [...prevState.places, this.props.data]
+            }));
+          }
+          //console.log('state changed');
+        }
+      }
   
     async loadData() {
       const query = `
@@ -89,6 +103,7 @@ export default class Display extends React.Component {
           rating
           created 
           type
+          dataset
         }
       }
       `;

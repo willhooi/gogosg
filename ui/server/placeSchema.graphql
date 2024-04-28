@@ -9,6 +9,7 @@ type Place {
   rating: Float
   created: GraphQLDate
   type: String
+  dataset: String
 }
 
 input PlaceInputs {
@@ -22,6 +23,7 @@ input PlaceDetailsInputs {
   rating: Float
   created: GraphQLDate
   type: String
+  dataset: String
 
 }
 

@@ -24,7 +24,8 @@ export default class Add extends React.Component {
       description: this.state.description,
       rating: parseInt(this.state.rating),
       type: this.state.type,
-      created: new Date()
+      created: new Date(),
+      dataset:'user-gen'
     };
     await this.addInput(placeDetails);
     this.setState({
@@ -33,7 +34,9 @@ export default class Add extends React.Component {
       description: '',
       rating: '',
       type: '',
-    })
+      newData: placeDetails
+    });
+   
   };
 
   handleInputChange(e){
@@ -55,14 +58,17 @@ export default class Add extends React.Component {
     const res = await graphQLFetch(query, {placeDetails});
     console.log(res);
   }
+  
 
   render(){
     return (
-        <div>
+        <div row justify-content-center>
             <div>
-                <Display />
+                <Display data ={this.state.newData}/>
             </div>
-            <div>
+            <div className="row justify-content-center">
+            <div className="col-md-6">
+              <h5>Add your own favourite place</h5>
               <form onSubmit={this.handleSubmit}>
               <input
                   type="text"
@@ -73,7 +79,7 @@ export default class Add extends React.Component {
                   onChange = {this.handleInputChange}
                   required
                 />
-                <br />
+             
                 <input
                   type="text"
                   name="review"
@@ -83,7 +89,7 @@ export default class Add extends React.Component {
                   onChange = {this.handleInputChange}
                   required
                 />
-                <br />
+                
                 <input
                   type="text"
                   name="description"
@@ -93,7 +99,7 @@ export default class Add extends React.Component {
                   onChange = {this.handleInputChange}
                   required
                 />
-                 <br />
+               
                  <select
                     name="rating"
                     className="form-control"
@@ -108,7 +114,7 @@ export default class Add extends React.Component {
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
-                  <br />
+                
                   <select
                     name="type"
                     className="form-control"
@@ -118,15 +124,17 @@ export default class Add extends React.Component {
                   >
                     <option value="">Select Type</option>
                     <option value="Attractions">Attractions</option>
-                    <option value="Accomodation">Accomodation</option>
+                    <option value="Accommodation">Accomodation</option>
                     <option value="Bars & Clubs">Bars & Clubs</option>
-                    <option value="Food & Beverage">Food & Beverage</option>
+                    <option value="Food & Beverages">Food & Beverages</option>
                   </select>
-                  <br/>
-                <button className="btn btn-danger m-2">Contribute</button>
+                
+                  <div className="button-container">
+                    <button className="btn btn-danger m-2">Add</button>
+                  </div>
               </form>
             </div>
-           
+            </div>
         </div>);
 	}
 }
