@@ -6,6 +6,7 @@ export default class PlaceCard extends React.Component {
         super(props);
         this.state = {
             buttonClicked: false,
+            imgLoaded: false,
         };
         this.fetchImage = this.fetchImage.bind(this);
         this.handler = this.handler.bind(this);
@@ -13,6 +14,7 @@ export default class PlaceCard extends React.Component {
     }
 
     fetchImage = (imgUuid, plcUuid, handler) => {
+        this.setState({imgLoaded: false});
         if (imgUuid.length > 0 && imgUuid[0].uuid) {
             fetch(`https://api.stb.gov.sg/media/download/v2/${imgUuid[0].uuid}?fileType=Medium%20Thumbnail`, {
                 method: 'GET',
@@ -28,8 +30,8 @@ export default class PlaceCard extends React.Component {
         }
     }
 
-    async fetchAndSetImage(){
-        await this.fetchImage(this.props.place.images, this.props.place.uuid, this.handler);
+    fetchAndSetImage(){
+        this.fetchImage(this.props.place.images, this.props.place.uuid, this.handler);
     };
 
     handler = (blob, plcUuid) => {
@@ -44,6 +46,7 @@ export default class PlaceCard extends React.Component {
                     element.removeChild(element.firstChild);
                 }
                 element.appendChild(img);
+                this.setState({imgLoaded:true});
             } 
         };
     };
@@ -51,10 +54,14 @@ export default class PlaceCard extends React.Component {
     componentDidMount(){
         this.fetchAndSetImage();
     };
+
+    componentDidUpdate(prevProps){
+        if(prevProps.place !== this.props.place){
+            this.fetchAndSetImage();
+        }
+    }
     
     //ADD TO DB USING GRAPHQLFETCH
-    
-   
     async addFavPlaceDetails(place){
        // console.log(place);
         const query = `
@@ -77,7 +84,9 @@ export default class PlaceCard extends React.Component {
         return(
             <div className="card-container">
             <div className="card-body row">
-                <div id={this.props.place.uuid} className="card-image col-md-4"></div>
+                <div id={this.props.place.uuid} className="card-image col-md-4">
+                    
+                </div>
                 <div className="d-flex flex-column col-md-2">
                     <h5 className="card-place">{this.props.place.name}</h5>
                     <p className="card-address">{`${this.props.place.address.streetName}, ${this.props.place.address.postalCode}`}</p>

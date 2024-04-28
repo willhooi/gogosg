@@ -5,7 +5,8 @@ export default class Search extends React.Component {
     constructor() {
       super();
       this.state = {
-        searchType: 'attractions', 
+        searchType: 'attractions',
+        key:0, 
       };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleSearchTypeChange = this.handleSearchTypeChange.bind(this);
@@ -16,15 +17,17 @@ export default class Search extends React.Component {
       const form = document.forms.searchItem;
       const searchItem = form.searchitem.value;
       const searchType = this.state.searchType;
-      this.props.searchplaces(searchItem, searchType); // Pass both search item and search type
+      this.props.searchplaces(searchItem, searchType); 
       form.searchitem.value = '';
     }
   
     handleSearchTypeChange(e) {
       this.setState({
         searchType: e.target.value,
+        key: this.state.key +1,
       });
     }
+
   
     render() {
       return (
@@ -58,7 +61,7 @@ export default class Search extends React.Component {
               </form>
             </div>
             <div className="scrollable-container">
-              <ShowPlaces places={this.props.places} />
+              <ShowPlaces places={this.props.places} key={this.state.key} />
             </div>
           </div>
         </div>
