@@ -54,7 +54,7 @@ export default class PlaceCard extends React.Component {
     componentDidMount(){
         this.fetchAndSetImage();
     };
-
+    //ensure that img loaded is synchronized with the fetched data
     componentDidUpdate(prevProps){
         if(prevProps.place !== this.props.place){
             this.fetchAndSetImage();

@@ -33,4 +33,5 @@ type Query {
 
 type Mutation {
   addFavouritePlace(placeDetails: PlaceDetailsInputs!): Boolean
+  deleteFavouritePlace(placeName: String):Boolean
 }

@@ -33,9 +33,26 @@ const resolvers = {
   },
   Mutation: {
     addFavouritePlace,
+    deleteFavouritePlace,
   },
   GraphQLDate,
 };
+
+async function deleteFavouritePlace(_,{placeName}){
+  //check if id(or name) in places(or favlist)
+  //if exist, delete from db.collection.places
+  const existed = await db.collection('places').findOne({name:placeName});
+  if (existed) {
+    await db.collection('places').deleteOne({name:placeName});
+    await db.collection('favlist').deleteOne({name:placeName});//update db so that can add again
+    console.log('Deleted:');
+    return true 
+  }
+  console.log('Not found');
+  return false;
+
+ 
+}
 
 async function addFavouritePlace(_, {placeDetails}) {
   //check if already in fav list
