@@ -51,7 +51,7 @@ export default class Share extends React.Component {
         const sortedPlaces = sharePlaces.slice().sort((a, b) => b.rating - a.rating);
         const starIcon = "⭐";
         const emailContent = sortedPlaces
-            .map((place, index) => `${index + 1}. ${place.name}: ${place.description}. ${place.rating} ${starIcon}`)
+            .map((place, index) => `${index + 1}. ${place.rating} ${starIcon} - ${place.name}: ${place.description}.`)
             .join('\n');
         this.setState({ emailContent });
     };

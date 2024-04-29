@@ -31,13 +31,12 @@ export default class Search extends React.Component {
   
     render() {
       return (
-        <div className="card-container text-center">
-          <h5>What's in Singapore?</h5>
-          <p>Search for different attractions or accomodation available in Singapore.
-            Check out the different bars & clubs to visit. Don't forget to try our local delights too!
-          </p>
-  
-          <div className="row justify-content-center">
+        <div className="row text-center">
+          <div className="card-container">
+            <h5>What's in Singapore?</h5>
+            <p>Search for different attractions or accomodation available in Singapore.
+              Check out the different bars & clubs to visit. Don't forget to try our local delights too!
+            </p>
             <div className="col-md-6">
               <form name="searchItem" onSubmit={this.handleSubmit}>
                 <select
@@ -60,10 +59,10 @@ export default class Search extends React.Component {
                 <button className="btn btn-danger m-2">Search</button>
               </form>
             </div>
-            <div className="scrollable-container">
-              <ShowPlaces places={this.props.places} key={this.state.key} />
+            <div>
             </div>
           </div>
+            <ShowPlaces places={this.props.places} key={this.state.key} />
         </div>
       );
     }
