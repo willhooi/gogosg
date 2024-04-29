@@ -40,10 +40,10 @@ This web app allows users to:
 * Run auto-build scripts that sets up MongoDB, initialize DB, compile and start ``npm run build``
 * At browser to go ``http://localhost:3000``
 * Summary:
-git clone https://github.com/IT5007-2320/course-project-whlws.git
-cd course-project.whlws.git
-npm install
-npm run build
+``git clone https://github.com/IT5007-2320/course-project-whlws.git``
+``cd course-project.whlws.git``
+``npm install``
+``npm run build``
 
 
 
