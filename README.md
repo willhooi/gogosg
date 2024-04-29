@@ -10,7 +10,7 @@ This web app allows users to:
 * share favourite list to friends [to be completed]
 
 ## Architecture
-[coming soon]
+![architecture diagram](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv2.png)
 
 
 ## Shared Coding Guidelines
