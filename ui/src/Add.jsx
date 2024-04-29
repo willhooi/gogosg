@@ -10,6 +10,7 @@ export default class Add extends React.Component {
       description: '',
       rating: '',
       type: '',
+      showDisplay: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,7 +35,8 @@ export default class Add extends React.Component {
       description: '',
       rating: '',
       type: '',
-      newData: placeDetails
+      newData: placeDetails,
+      showDisplay:true
     });
    
   };
@@ -62,10 +64,7 @@ export default class Add extends React.Component {
 
   render(){
     return (
-        <div row justify-content-center>
-            <div>
-                <Display data ={this.state.newData}/>
-            </div>
+        <div className="row justify-content-center">
             <div className="row justify-content-center">
             <div className="col-md-6">
               <h5>Add your own favourite place</h5>
@@ -133,6 +132,7 @@ export default class Add extends React.Component {
                     <button className="btn btn-danger m-2">Add</button>
                   </div>
               </form>
+              {this.state.showDisplay && <Display newData={this.state.newData}/>}
             </div>
             </div>
         </div>);
