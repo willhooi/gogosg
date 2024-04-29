@@ -9,6 +9,9 @@ This web app allows users to:
 * add user-generated entry to favourite list
 * share favourite list to friends [to be completed]
 
+## Architecture
+[coming soon]
+
 
 ## Shared Coding Guidelines
 * To start, clone remotely ```git clone https://github.com/IT5007-2320/course-project-whlws.git```
