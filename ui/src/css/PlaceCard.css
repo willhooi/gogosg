@@ -2,9 +2,9 @@
     font-size: 0.75em;
     position: relative;
     transition: transform 0.2s;
-    border: 2px solid black;
+    border: 2px solid rgb(215, 31, 14);
     border-radius: 10px;
-    box-shadow: 5px 5px 5px grey;
+    box-shadow: 5px 5px 5px rgb(101, 8, 8);
     padding: 20px;
     margin: 20px;
     max-width: 100%;

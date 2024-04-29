@@ -1,4 +1,5 @@
 import logo from './assets/cityscape-singapore.jpg';
+import './css/Homepage.css'; 
 
 export default class Homepage extends React.Component {
     constructor() {
@@ -7,23 +8,28 @@ export default class Homepage extends React.Component {
 
     render() {
         return (
-            <div className="row justify-content-center"> 
-                <div className="col-md-6">
-                        <img src={logo} alt="cityscape-image" className="img-fluid rounded mx-auto d-block" />
-                </div>
-                <div className="row justify-content-center">
-                    <div className="col-md-6">
-                        <p className="list-group-item">This web app allows users to:</p>
-                        <ul className="list-group">
-                            <span className="mr-2"><i className="bi bi-back"></i> search for areas of interests in Singapore (attractions, bars & clubs, food & beverage and  accommodation)</span>
-                            <span className="mr-2"><i className="bi bi-back"></i> add search items as to-do cards in favorite list</span>
-                            <span className="mr-2"><i className="bi bi-back"></i> view to-do cards in favorite list</span>
-                            <span className="mr-2"><i className="bi bi-back"></i> delete to-do cards in favorite list (coming)</span>
-                            <span className="mr-2"><i className="bi bi-back"></i> edit/update favorite list (coming)</span>
-                        </ul>
+            <div>
+                <div className="row justify-content-center"> 
+                    <div className="row justify-content-center">
+                        <div className="col-md-6">
+                            <div className="image-container">
+                                <img src={logo} alt="cityscape" />
+                            </div>
+                            <div className="card-container">
+                                <ul className="list-group borderless">
+                                    <li className="list-group-item borderless">👍 Search for places of interests by categories</li>
+                                    <li className="list-group-item">👍 Add your favorite places to bookmark them</li>
+                                    <li className="list-group-item">👍 View your favorite places as cards collection</li>
+                                    <li className="list-group-item">👍 Delete your favourite cards</li>
+                                    <li className="list-group-item">👍 Add your own favorite places</li>
+                                    <li className="list-group-item">👍 Share your favourite places to a friend!</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         );
     }
 }
+

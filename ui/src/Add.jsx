@@ -64,8 +64,8 @@ export default class Add extends React.Component {
 
   render(){
     return (
-        <div className="row justify-content-center">
-            <div className="row justify-content-center">
+        <div className="row">
+            <div className="card-container">
             <div className="col-md-6">
               <h5>Add your own favourite place</h5>
               <form onSubmit={this.handleSubmit}>
@@ -132,9 +132,9 @@ export default class Add extends React.Component {
                     <button className="btn btn-danger m-2">Add</button>
                   </div>
               </form>
-              {this.state.showDisplay && <Display newData={this.state.newData}/>}
             </div>
             </div>
+            {this.state.showDisplay && <Display newData={this.state.newData}/>}
         </div>);
 	}
 }

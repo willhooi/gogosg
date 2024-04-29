@@ -31,7 +31,7 @@ export default class Search extends React.Component {
   
     render() {
       return (
-        <div className="container text-center">
+        <div className="card-container text-center">
           <h5>What's in Singapore?</h5>
           <p>Search for different attractions or accomodation available in Singapore.
             Check out the different bars & clubs to visit. Don't forget to try our local delights too!

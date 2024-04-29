@@ -98,7 +98,7 @@ export default class Share extends React.Component {
         }
 
         return (
-            <div className="cardDisplay container">
+            <div className="card-container">
                 <h5>Share your favourite attractions with someone</h5>
                 <form id="email-form" ref={this.form} onSubmit={this.shareDisplayViaEmail}>
                     <input

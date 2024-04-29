@@ -38,34 +38,36 @@ class GoGoSG extends React.Component {
       console.log(this.state.searchplaces);
     };
   
-  render() {
-    return (
-      <div className="row">
-          <h1 className="text-center">GO GO SG</h1>
-          <p className="text-center">Your Singapore tourism companion web application</p>
+    render() {
+      return (
+        <div className="container"> 
+          <div className="row">
+            <h1 className="text-center">GO GO SG</h1>
+            <p className="text-center">Collect your favourite places in Singapore!</p>
   
-        <div className="col text-center">
+            <div className="col text-center">
               <button className="btn btn-danger m-2"><a href="/#/home">Home</a></button>
               <button className="btn btn-danger m-2"><a href="/#/search">Search</a></button>
               <button className="btn btn-danger m-2"><a href="/#/showplaces">Display</a></button>
-              <button className="btn btn-danger m-2"><a href="/#/addplaces">Add</a></button>    
+              <button className="btn btn-danger m-2"><a href="/#/addplaces">Add</a></button>
+            </div>
+            <div>
+              <Router>
+                <Switch>
+                  <Redirect exact from="/" to="/home" />
+                  <Route path="/home" component={Homepage} />
+                  <Route path="/showplaces" component={Display} />
+                  <Route path="/addplaces" component={Add} />
+                  <Route path="/search" render={
+                    (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />
+                  } />
+                </Switch>
+              </Router>
+            </div>
+          </div>
         </div>
-        <div>
-          <Router>
-            <Switch>
-              <Redirect exact from="/" to="/home" />
-              <Route path="/home" component={Homepage} />
-              <Route path="/showplaces" component={Display} />
-              <Route path="/addplaces" component={Add} />
-              <Route path="/search" render={
-                (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />
-              }/>
-            </Switch>
-        </Router>
-        </div>
-      </div>
       );
-  }
+    }
 }
 
 const element = <GoGoSG />;
