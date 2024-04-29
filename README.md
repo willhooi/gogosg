@@ -1,13 +1,27 @@
 ﻿# GoGo SG (formerly known as CaiFan Kaki)
 
+![homepage](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Homepage.png)
+
 ## Overview
 This web app allows users to:
 * search for areas of interests in Singapore (attractions, bars & clubs, food & beverage and  accomodation)
+![search](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Search.png)
+
 * add search items as to-do cards in favourite list
+![addfav](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Addfav.png)
+
 * view to-do cards in favourite list
+![display](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Display.png)
+
 * delete to-do cards in favourite list
+![delete](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Delete.png)
+
 * add user-generated entry to favourite list
-* share favourite list to friends [to be completed]
+![addown](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Addown.png)
+
+* share favourite list to friends via email
+![share](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Shared.png)
+![email](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Email.png)
 
 ## Architecture Diagram
 ![architecture diagram](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv2.png)

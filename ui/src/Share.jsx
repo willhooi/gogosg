@@ -51,7 +51,7 @@ export default class Share extends React.Component {
         const sortedPlaces = sharePlaces.slice().sort((a, b) => b.rating - a.rating);
         const starIcon = "⭐";
         const emailContent = sortedPlaces
-            .map((place, index) => `${index + 1}. ${place.rating} ${starIcon} - ${place.name}: ${place.description}.`)
+            .map((place, index) => `${index + 1}.   ${place.rating} ${starIcon} - ${place.name}: ${place.description}.`)
             .join('\n');
         this.setState({ emailContent });
     };
@@ -71,7 +71,7 @@ export default class Share extends React.Component {
             .sendForm(SERVICE_ID, TEMPLATE_ID, this.form.current, {
                 publicKey: PUBLIC_KEY, 
                 to_email: emailAdd,
-                message_html: emailContent
+                message_html: emailContent,
             })
             .then(
                 (response) => {
@@ -118,6 +118,7 @@ export default class Share extends React.Component {
                         required
                     />
                     <input type="hidden" name="message_html" value={this.state.emailContent} />
+                    <input type="hidden" name="place_count" value={Object.keys(this.state.sharePlaces).length} />
                     <button type="submit" className="btn btn-primary m-2">
                         Share via EmailJS
                     </button>
