@@ -16,7 +16,7 @@ This web app allows users to:
 3. When displaying data added, it will query directly from DB (via graphql)
 4. When deleting data displayed (as cards), it will mutate directly to DB (via graphql), causing state changes which re-renders the display component.
 5. User can add own data which mutate directly to DB (via graphql).
-6. User can also share saved/favourited data to external party as email (using external email client)  
+6. User can also share saved/favourited data to external party as email (using EmailJS webservice)  
 
 ## Shared Coding Guidelines
 * To start, clone remotely ```git clone https://github.com/IT5007-2320/course-project-whlws.git```
