@@ -41,7 +41,7 @@ This web app allows users to:
 * At browser to go ``http://localhost:3000``
 * Summary:
 ``
-git clone https://github.com/IT5007-2320/course-project-whlws.git
+git clone https://github.com/IT5007-2320/course-project-whlws.git\n
 cd course-project.whlws.git
 npm install
 npm run build
