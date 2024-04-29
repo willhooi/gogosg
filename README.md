@@ -42,7 +42,7 @@ This web app allows users to:
 * Summary:
   ```shell
   git clone https://github.com/IT5007-2320/course-project-whlws.git
-  cd course-project.whlws.git
+  cd course-project-whlws
   npm install
   npm run build
   ```
