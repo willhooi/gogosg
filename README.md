@@ -1,6 +1,6 @@
 ﻿# GoGo SG (formerly known as CaiFan Kaki)
 
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Homepage.png" width="640">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Homepage.png" width="400">
 
 ## Overview
 This web app allows users to:
