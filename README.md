@@ -3,6 +3,9 @@
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Homepage.png" width="400">
 
 ## Overview
+**Go Go SG** is akin to a tourist's 'to-do' list when exploring places of interest in Singapore. The general concept revolves the idea of users searching for places of interests and collecting interesting ones as 'cards' by adding them to their favourite collection. User can enter their own submission to add new cards and to delete them if needed. They can also share their card collection to their friends via a 3rd party email service.  
+
+## Features
 This web app allows users to:
 * search for areas of interests in Singapore (attractions, bars & clubs, food & beverage and  accomodation)
 
@@ -32,12 +35,12 @@ This web app allows users to:
 
 ## Architecture Diagram
 ![architecture diagram](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv2.png)
-1. Client page retrieves query data from external API directly.
-2. Data is displayed with buttons for user to add selected data to DB via the graphql middleware.
-3. When displaying data added, it will query directly from DB (via graphql)
-4. When deleting data displayed (as cards), it will mutate directly to DB (via graphql), causing state changes which re-renders the display component.
-5. User can add own data which mutate directly to DB (via graphql).
-6. User can also share saved/favourited data to external party as email (using EmailJS webservice)  
+1. Client page (front-end) retrieves user search query results/data from external API (using STB API) directly.
+2. Data is displayed with buttons for user to add selected data to local DB via the graphql middleware.
+3. When displaying data added, it will query and fetch directly from the local DB (via graphql)
+4. When deleting data displayed (as cards), it will mutate data directly to local DB (via graphql), causing state changes which re-renders the display component.
+5. User can add own user-generated data which is used to mutate data directly in the local DB (via graphql).
+6. User can also share their favourite data to external party via an email template (using EmailJS webservice)  
 
 ## Shared Coding Guidelines
 * To start, clone remotely ```git clone https://github.com/IT5007-2320/course-project-whlws.git```
@@ -67,7 +70,10 @@ This web app allows users to:
   npm install
   npm run build
   ```
-
+## Reference
+1. Project is inspired by a similar project by [Damian Boh](https://github.com/damianboh/sg_attractions_outings_django)
+2. [ChatGPT](https://chat.openai.com/) is used as assistive tool to generate most CSS files, utils.js, checking of errors & improvement to general aesthetics.
+3. Code base is primarily adapted from IT5007 assignments and modified accordingly. 
 
 
 
