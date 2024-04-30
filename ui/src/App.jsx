@@ -4,8 +4,19 @@ import Homepage from './Homepage.jsx';
 import Display from './Display.jsx';
 import Add from './Add.jsx';
 import Search from './Search.jsx';
+import GoogleLoginComponent from './GoogleLogin.js';
+import { GoogleOAuthProvider} from '@react-oauth/google';
 
 import './css/App.css';
+
+const LoginPage = () => {
+  return (
+    <div>
+      {/* Other login options */}
+      <GoogleLoginComponent />
+    </div>
+  );
+};
 
 class GoGoSG extends React.Component {
   constructor() {
@@ -49,7 +60,9 @@ class GoGoSG extends React.Component {
               <button className="btn btn-danger m-2"><a href="/#/search">Search</a></button>
               <button className="btn btn-danger m-2"><a href="/#/showplaces">Display</a></button>
               <button className="btn btn-danger m-2"><a href="/#/addplaces">Add</a></button>    
+              <button className="btn btn-danger m-2"><a href="/#/googleLogin">Login</a></button>    
         </div>
+    
         <div>
           <Router>
             <Switch>
@@ -60,6 +73,7 @@ class GoGoSG extends React.Component {
               <Route path="/search" render={
                 (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />
               }/>
+              <Route path="/googleLogin" render={<LoginPage/>}/>
             </Switch>
         </Router>
         </div>
@@ -69,5 +83,19 @@ class GoGoSG extends React.Component {
 }
 
 const element = <GoGoSG />;
+// const element = (
+//   <GoogleOAuthProvider clientId="295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com">
+//     <GoGoSG/>
+//   </GoogleOAuthProvider>
 
-ReactDOM.render(element, document.getElementById('contents'));
+// );
+
+
+// ReactDOM.render(
+//   <GoogleOAuthProvider clientId="295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com">
+//     <React.StrictMode>
+//     <GoGoSG />
+//     </React.StrictMode>
+//     </GoogleOAuthProvider>
+//    , document.getElementById('contents'));
+ReactDOM.render(element,document.getElementById('contents'));
