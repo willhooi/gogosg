@@ -36,7 +36,7 @@ function PlaceCard(props) {
                     <p className="card-text mb-0">Added: {createdDate}</p>
                 </div>
                 <div className="button-container">
-                    <button className="btn btn-danger buttonContainer m-2" onClick={deleteFavourite}>
+                    <button className="btn btn-secondary buttonContainer m-2" onClick={deleteFavourite}>
                         Remove
                     </button>
                 </div>
@@ -105,21 +105,25 @@ export default class Display extends React.Component {
         ));
 
         const cardRows = [];
-        for (let i = 0; i < placesCards.length; i += 4) {
-            cardRows.push(
-                <div key={i / 4} className="row">
-                    {placesCards.slice(i, i + 4)}
-                </div>
-            );
-        }
+            for (let i = 0; i < placesCards.length; i += 4) {
+                cardRows.push(
+                    <div key={i / 4} className="row">
+                        {placesCards.slice(i, i + 4)}
+                    </div>
+                );
+            }
+        //if nothing to display
+        let displayContent;
+        (placesCards.length > 0) ? 
+            displayContent = cardRows : displayContent=<h6>No card available</h6>;
 
         return (
             <div className='cardDisplay container'>
                 <div className="row justify-content-center">
-                    <h5 className="text-center">Favourite Things to-do List</h5>
+                    <h5 className="text-center">My favourite to GO places</h5>
                 </div>
                 <div className="row">
-                    {cardRows}
+                    {displayContent}
                 </div>
                 <div>
                     <Share />

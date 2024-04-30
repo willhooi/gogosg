@@ -29,6 +29,7 @@ export default class Add extends React.Component {
       dataset:'user-gen'
     };
     await this.addInput(placeDetails);
+    //clear
     this.setState({
       name: '',
       review: '',
@@ -107,11 +108,11 @@ export default class Add extends React.Component {
                     required
                   >
                     <option value="">Select Rating</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
                   </select>
                 
                   <select

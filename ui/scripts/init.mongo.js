@@ -28,6 +28,16 @@ const placesDB = [
     type: 'Hawker',
     dataset:'food-beverages',
    },
+   {
+    id: 3,
+    name: 'Hotel Jiakalifornia',
+    description: 'This is a place for spicy time', 
+    review: 'Tried checking in but cannot seemed to checkout..',
+    rating: 4.8,
+    created: new Date(),
+    type: 'Hotel',
+    dataset:'accommodation',
+   },
  
 ];
 

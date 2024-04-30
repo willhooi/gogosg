@@ -42,7 +42,7 @@ class GoGoSG extends React.Component {
       return (
         <div className="container"> 
           <div className="row">
-            <h1 className="text-center">GO GO SG</h1>
+            <h1 className="text-center"><b>GO GO SG</b></h1>
             <p className="text-center">Collect your favourite places in Singapore!</p>
   
             <div className="col text-center">

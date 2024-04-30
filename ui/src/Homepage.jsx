@@ -15,15 +15,18 @@ export default class Homepage extends React.Component {
                             <div className="image-container">
                                 <img src={logo} alt="cityscape" />
                             </div>
-                            <div className="card-container">
-                                <ul className="list-group borderless">
-                                    <li className="list-group-item borderless">👍 Search for places of interests by categories</li>
-                                    <li className="list-group-item">👍 Add your favorite places to bookmark them</li>
-                                    <li className="list-group-item">👍 View your favorite places as cards collection</li>
-                                    <li className="list-group-item">👍 Delete your favourite cards</li>
-                                    <li className="list-group-item">👍 Add your own favorite places</li>
-                                    <li className="list-group-item">👍 Share your favourite places to a friend!</li>
-                                </ul>
+                            <div>
+                                <p className="text-center m-2"><b>GO GO SG</b> is a fun way to check out 
+                                interesting place of interest for tourist in Singapore. With GO GO SG, you can gamify your travel
+                                experience by collecting your to-go places and even share them with your friends!
+                                </p>
+                                    <div className="card-container">👍 Search for places of interests by categories. <button className="btn btn-danger btn-sm m-2">Search</button></div>
+                                    <div className="card-container">👍 Add your favorite places to bookmark them.<button className="btn btn-success btn-sm m-2">Add to Favourite</button></div>
+                                    <div className="card-container">👍 View your favorite places as cards collection. <button className="btn btn-danger btn-sm m-2">Display</button></div>
+                                    <div className="card-container">👍 Delete your favourite cards. <button className="btn btn-secondary btn-sm m-2">Remove</button></div>
+                                    <div className="card-container">👍 Add your own favorite places. <button className="btn btn-danger btn-sm m-2">Add</button></div>
+                                    <div className="card-container">👍 Share your favourite places to a friend! <button className="btn btn-primary btn-sm m-2">Share via EmailJS</button></div>
+    
                             </div>
                         </div>
                     </div>

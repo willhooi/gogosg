@@ -31,12 +31,10 @@ export default class Search extends React.Component {
   
     render() {
       return (
-        <div className="row text-center">
+        <div className="row">
           <div className="card-container">
-            <h5>What's in Singapore?</h5>
-            <p>Search for different attractions or accomodation available in Singapore.
-              Check out the different bars & clubs to visit. Don't forget to try our local delights too!
-            </p>
+            <h5>GO where in Singapore?</h5>
+            <p>Search different places of interest.You can specify different attraction types and see what come up.</p>
             <div className="col-md-6">
               <form name="searchItem" onSubmit={this.handleSubmit}>
                 <select
@@ -44,10 +42,10 @@ export default class Search extends React.Component {
                   value={this.state.searchType}
                   onChange={this.handleSearchTypeChange}
                 >
-                  <option value="attractions">Attractions</option>
-                  <option value="accommodation">Accomodation</option>
-                  <option value="bars-clubs">Bars & Clubs</option>
-                  <option value="food-beverages">Food & Beverages</option>
+                  <option value="attractions">Attractions (e.g. zoo, museum, etc)</option>
+                  <option value="accommodation">Accomodation (e.g. hotels, Orchard, etc)</option>
+                  <option value="bars-clubs">Bars & Clubs (e.g. wine, beer, music, etc)</option>
+                  <option value="food-beverages">Food & Beverages (e.g. coffee, local cuisine, etc)</option>
                 </select>
                 <input
                   type="text"

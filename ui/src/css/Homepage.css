@@ -3,7 +3,7 @@
     justify-content: center; /* Center the content horizontally */
     align-items: center; /* Center the content vertically */
     overflow: hidden; /* Hides any overflow from the container */
-    height: 30vh; /* Sets the height of the container to 30% of the viewport height */
+    height: 50vh; /* Sets the height of the container to 30% of the viewport height */
 }
 
 .image-container img {

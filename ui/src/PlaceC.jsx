@@ -106,7 +106,7 @@ export default class PlaceCard extends React.Component {
                 </div>
                 <div className="button-container">
                     <button 
-                        className="btn btn-danger" 
+                        className="btn btn-success" 
                         onClick={()=>this.addFavPlaceDetails(this.props.place)}
                         disabled = {this.state.buttonClicked}
                     >
