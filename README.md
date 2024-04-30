@@ -7,31 +7,49 @@
 
 ## Features
 This web app allows users to:
-* search for areas of interests in Singapore (attractions, bars & clubs, food & beverage and  accomodation)
+
+1. Search for places of interests in Singapore
 
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Search.png" width="500">
 
-* add search items as to-do cards in favourite list
+* user selects from a drop-down menu of attractions, bars & clubs, food & beverage and accommodation and enter free text of search item.
+
+2. Add search items as to-do cards in favourite list
 
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Addfav.png" width="500">
 
-* view to-do cards in favourite list
+* search results is displayed as 'cards' and user can add selected cards to a favourite list.
+* after button is clicked, it will be greyed out
+
+3. View to-do cards in favourite list
 
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Display.png" width="500">
 
-* delete to-do cards in favourite list
+* Place details are displayed as cards and colour-coded according to the input type (Accomodation is green, Attractions is orange, Food & Beverage is red and user-generated content is blue)
+
+4. Delete to-do cards in favourite list
 
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Delete.png" width="500">
 
-* add user-generated entry to favourite list
+* Cards can be removed from the list by clicking on button.
+* If there is no card available, a message will be displayed.
+
+5. Add user-generated entry to favourite list
 
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Addown.png" width="500">
 
-* share favourite list to friends via email
+* user can enter own input and add by clicking on button.
+
+6. share favourite list to friends via email
 
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Shared.png" width="500">
 
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Email.png" width="500">
+
+* At the display list, user has the option to share the list by entering email of recipient and name of sender.
+* The input will be used to trigger an external webservice, EmailJS to send an email
+* Upon success (or error), a message will be displayed.
+* Email is formatted to rank list and count number of items sent.
 
 ## Architecture Diagram
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv3.jpeg" width="500">
