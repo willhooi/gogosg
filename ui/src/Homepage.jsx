@@ -9,9 +9,7 @@ export default class Homepage extends React.Component {
 
     render() {
         return (
-            <div>
                 <div className="row justify-content-center"> 
-                    <div className="row justify-content-center">
                         <div className="col-md-6">
                             <div className="image-container">
                                 <img src={logo} alt="cityscape" />
@@ -29,13 +27,10 @@ export default class Homepage extends React.Component {
                                     <div className="card-container">👍 Delete your favourite cards. <button className="btn btn-secondary btn-sm m-2">Remove</button></div>
                                     <div className="card-container">👍 Add your own favorite places. 
                                         <Link to="/addplaces" className="btn btn-danger btn-sm m-2">Add</Link></div>
-                                    <div className="card-container">👍 Share your favourite places to a friend! <button className="btn btn-primary btn-sm m-2">Share via EmailJS</button></div>
-    
+                                    <div className="card-container">👍 Share your favourite places to a friend! <button className="btn btn-primary btn-sm m-2">Share via EmailJS</button></div> 
                             </div>
                         </div>
-                    </div>
                 </div>
-            </div>
         );
     }
 }
