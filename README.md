@@ -1,8 +1,13 @@
 ﻿# GoGo SG (formerly known as CaiFan Kaki)
 
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Homepage.png" width="400">
+## Team
+1. Li Weishi
+2. Hooi Yuk Chuan (William)
+
 
 ## Overview
+
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Homepage.png" width="400">
 **Go Go SG** is akin to a tourist's 'to-do' list when exploring places of interest in Singapore. The general concept revolves the idea of users searching for places of interests and collecting interesting ones as 'cards' by adding them to their favourite collection. User can enter their own submission to add new cards and to delete them if needed. They can also share their card collection to their friends via a 3rd party email service.  
 
 ## Features
