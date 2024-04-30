@@ -9,36 +9,37 @@
 This web app allows users to:
 * search for areas of interests in Singapore (attractions, bars & clubs, food & beverage and  accomodation)
 
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Search.png" width="400">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Search.png" width="500">
 
 * add search items as to-do cards in favourite list
 
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Addfav.png" width="400">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Addfav.png" width="500">
 
 * view to-do cards in favourite list
 
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Display.png" width="400">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Display.png" width="500">
 
 * delete to-do cards in favourite list
 
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Delete.png" width="400">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Delete.png" width="500">
 
 * add user-generated entry to favourite list
 
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Addown.png" width="400">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Addown.png" width="500">
 
 * share favourite list to friends via email
 
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Shared.png" width="400">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Shared.png" width="500">
 
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Email.png" width="400">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Email.png" width="500">
 
 ## Architecture Diagram
-![architecture diagram](https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv2.png)
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv3.jpg" width="500">
+
 1. Client page (front-end) retrieves user search query results/data from external API (using STB API) directly.
 2. Data is displayed with buttons for user to add selected data to local DB via the graphql middleware.
-3. When displaying data added, it will query and fetch directly from the local DB (via graphql)
-4. When deleting data displayed (as cards), it will mutate data directly to local DB (via graphql), causing state changes which re-renders the display component.
+3. When displaying data added, it will query and fetch directly from the local DB (via graphql middleware)
+4. When deleting data displayed (as cards), it will mutate data directly to local DB (via graphql middleware), causing state changes which re-renders the display component.
 5. User can add own user-generated data which is used to mutate data directly in the local DB (via graphql).
 6. User can also share their favourite data to external party via an email template (using EmailJS webservice)  
 
@@ -72,8 +73,8 @@ This web app allows users to:
   ```
 ## Reference
 1. Project is inspired by a similar project by [Damian Boh](https://github.com/damianboh/sg_attractions_outings_django)
-2. [ChatGPT](https://chat.openai.com/) is used as assistive tool to generate most CSS files, utils.js, checking of errors & improvement to general aesthetics.
-3. Code base is primarily adapted from IT5007 assignments and modified accordingly. 
+2. [ChatGPT](https://chat.openai.com/) is used as assistive tool to generate most CSS files, utils.js, fetchimage blob function, checking for & fixing errors and suggest improvements on general code aesthetics.
+3. Code base is heavily adapted from IT5007 assignment templates and modified accordingly. 
 
 
 
