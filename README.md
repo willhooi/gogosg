@@ -34,7 +34,7 @@ This web app allows users to:
 <img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/Email.png" width="500">
 
 ## Architecture Diagram
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv3.jpg" width="500">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv3.jpeg" width="500">
 
 1. Client page (front-end) retrieves user search query results/data from external API (using STB API) directly.
 2. Data is displayed with buttons for user to add selected data to local DB via the graphql middleware.
