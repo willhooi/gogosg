@@ -37,7 +37,7 @@ class GoGoSG extends React.Component {
       this.setState({searchplaces : data.data });
       console.log(this.state.searchplaces);
     };
-  
+
     render() {
       return (
         <div className="container"> 

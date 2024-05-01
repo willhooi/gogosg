@@ -30,6 +30,7 @@ const GraphQLDate = new GraphQLScalarType({
 const resolvers = {
   Query: {
     listFavourites,
+    listFavPlaceName,
   },
   Mutation: {
     addFavouritePlace,
@@ -71,6 +72,11 @@ async function addFavouritePlace(_, {placeDetails}) {
 async function listFavourites() {
   const places = await db.collection('places').find({}).toArray();
   return places;
+}
+
+async function listFavPlaceName() {
+  const placeName = await db.collection('favlist').find({}).toArray();
+  return placeName;
 }
 
 async function getNextSequence(name) {

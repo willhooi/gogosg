@@ -50,3 +50,10 @@
     justify-content: center;
     align-items: center;
 }
+
+.disabled {
+    pointer-events: none; /* Prevent clicking on the button */
+    opacity: 0.5; /* Reduce the opacity to visually indicate it's disabled */
+    cursor: not-allowed; /* Change cursor to not-allowed */
+    /* Add any additional styles to indicate the button is disabled */
+}

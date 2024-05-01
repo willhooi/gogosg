@@ -50,6 +50,7 @@ print('Inserted', count, 'places');
 const initialFavourite = [
     {name: 'Kimchi Express'}, 
     {name: 'Final Desti-Nasi'},  
+    {name: 'Hotel Jiakalifornia'},
 ];
 db.favlist.deleteMany({});
 db.favlist.insertMany(initialFavourite);
