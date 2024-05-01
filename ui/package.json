@@ -59,6 +59,7 @@
   "homepage": "",
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
+    "@types/jwt-decode": "^3.1.0",
     "apollo-server-express": "^2.26.0",
     "bootstrap-icons": "^1.11.3",
     "express": "^4.16.4",

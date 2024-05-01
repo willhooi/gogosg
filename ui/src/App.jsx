@@ -4,15 +4,45 @@ import Homepage from './Homepage.jsx';
 import Display from './Display.jsx';
 import Add from './Add.jsx';
 import Search from './Search.jsx';
+import {jwtDecode} from 'jwt-decode';
 
 import './css/App.css';
+
+
 
 class GoGoSG extends React.Component {
   constructor() {
     super();
-    this.state = {searchplaces: []};
+    this.state = {searchplaces: [], user:{}};
+    this.icons = ['👨', '🦁', '🐯', '🐵', '🐻'];
     this.searchplaces = this.searchplaces.bind(this);
+    this.handleCallbackResponse = this.handleCallbackResponse.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
     }
+
+  componentDidMount() {
+    //console.log('ready to to activate google');
+    google.accounts.id.initialize({
+      client_id: "295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com",
+      callback: this.handleCallbackResponse
+     });
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme:"outline", size:"small"}
+     )
+  }
+  handleCallbackResponse(response) {
+   // console.log("Encoded JWT ID token: " + response.credential);
+    const userObject= jwtDecode(response.credential);
+    console.log(userObject)
+    this.setState({user:userObject})
+    document.getElementById("signInDiv").hidden = true;
+
+  }
+  handleSignOut(event){
+    this.setState({user:{}});
+    document.getElementById("signInDiv").hidden = false;
+  }
 
   async searchplaces(searchItem, searchType){
      console.log(searchItem, searchType);
@@ -39,6 +69,9 @@ class GoGoSG extends React.Component {
     };
 
     render() {
+
+      const randomIconIndex = Math.floor(Math.random() * this.icons.length);
+      const randomIcon = this.icons[randomIconIndex];
       return (
         <div className="container"> 
           <div className="row">
@@ -50,18 +83,29 @@ class GoGoSG extends React.Component {
               <button className="btn btn-danger m-2"><a href="/#/search">Search</a></button>
               <button className="btn btn-danger m-2"><a href="/#/showplaces">Display</a></button>
               <button className="btn btn-danger m-2"><a href="/#/addplaces">Add</a></button>
-            </div>
-            <div>
-              <Router>
-                <Switch>
-                  <Redirect exact from="/" to="/home" />
-                  <Route path="/home" component={Homepage} />
-                  <Route path="/showplaces" component={Display} />
-                  <Route path="/addplaces" component={Add} />
-                  <Route path="/search" render={
-                    (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />
-                  } />
-                </Switch>
+              <button id="signInDiv" className="btn btn-danger m-2"></button>
+              {Object.keys(this.state.user).length !==0 &&
+              <button className="btn btn-danger m-2" onClick={(e) => this.handleSignOut(e)}>Sign Out</button>  
+              }
+              {Object.keys(this.state.user).length !==0 && 
+                  <div>
+                      <div className="icon">{randomIcon}</div>
+                    <h5>{this.state.user.family_name}</h5>
+                  </div>
+              }
+        </div>
+     
+        <div>
+          <Router>
+            <Switch>
+              <Redirect exact from="/" to="/home" />
+              <Route path="/home" component={Homepage} />
+              <Route path="/showplaces" component={Display} />
+              <Route path="/addplaces" component={Add} />
+              <Route path="/search" render={
+                (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />
+              }/>
+            </Switch>
               </Router>
             </div>
           </div>
@@ -72,4 +116,4 @@ class GoGoSG extends React.Component {
 
 const element = <GoGoSG />;
 
-ReactDOM.render(element, document.getElementById('contents'));
+ReactDOM.render(element,document.getElementById('contents'));
