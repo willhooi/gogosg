@@ -2,9 +2,10 @@
  * Initialize DB using
  * 1. systemctl start mongod
  * 2. localhost: mongo gogosg scripts/init.mongo.js
- */
+ * 3. To use MongoDB Atlas: mongo mongodb+srv://gogosg:1g0g0SG@gogosg.l44uqf9.mongodb.net/gogosg scripts/init.mongo.js
 
-db.places.remove({});
+*/
+db.places.deleteMany({});
 
 //INITIAL DATA
 const placesDB = [
@@ -50,10 +51,10 @@ const initialFavourite = [
     {name: 'Kimchi Express'}, 
     {name: 'Final Desti-Nasi'},  
 ];
-db.favlist.remove({});
+db.favlist.deleteMany({});
 db.favlist.insertMany(initialFavourite);
 
-db.counters.remove({ _id: 'places' });
+db.counters.deleteMany({ _id: 'places' });
 db.counters.insert({ _id: 'places', current: count });
 
 db.places.createIndex({ id: 1 }, { unique: true });
