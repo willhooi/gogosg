@@ -1,8 +1,8 @@
 ﻿# GoGo SG (formerly known as CaiFan Kaki)
 
-## Team
+## Team 1
 1. Li Weishi
-2. Hooi Yuk Chuan (William)
+2. Hooi Yuk Chuan (William) -A0265028E
 
 
 ## Overview
@@ -85,6 +85,7 @@ This web app allows users to:
 ## To start web app
 * Clone to local directory: ``git clone https://github.com/IT5007-2320/course-project-whlws.git``
 * At directory, install dependencies ``npm install``
+* If have any error issues, can try ```nvm install 22.0.0 `` first. 
 * Run auto-build scripts that sets up MongoDB, initialize DB, compile and start ``npm run build``
 * At browser to go ``http://localhost:3000``
 * Summary:
