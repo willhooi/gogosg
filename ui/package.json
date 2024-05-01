@@ -1,54 +1,4 @@
 {
-    "name": "caifan-kaki",
-    "version": "1.0.0",
-    "description": "IT5007 Final Project",
-    "main": "index.js",
-    "scripts": {
-        "old_start": "nodemon -w server server.js",
-        "startdb": "systemctl start mongod",
-        "stopdb": "systemctl stop mongod",
-        "start": "nodemon -w server -e js,graphql server/server.js",
-        "compile": "npx webpack && mongo gogosg scripts/init.mongo.js",
-        "watch": "babel src --out-dir public --watch --verbose",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "systemctl start mongod & npm run compile && npm start"
-    },
-    "repository": {
-        "type": "git",
-        "url": ""
-    },
-    "author": "William Hooi & Li Weishi",
-    "license": "ISC",
-    "homepage": "",
-    "dependencies": {
-        "@react-oauth/google": "^0.12.1",
-        "@types/jwt-decode": "^3.1.0",
-        "apollo-server-express": "^2.26.0",
-        "bootstrap-icons": "^1.11.3",
-        "express": "^4.16.4",
-        "graphql": "^0.13.2",
-        "jwt-decode": "^4.0.0",
-        "mongodb": "^3.7.3",
-        "node-fetch": "^3.3.2",
-        "nodemon": "^1.18.9",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "webpack-cli": "^5.0.1"
-    },
-    "devDependencies": {
-        "@babel/cli": "^7.2.3",
-        "@babel/core": "^7.2.2",
-        "@babel/preset-env": "^7.2.3",
-        "@babel/preset-react": "^7.0.0",
-        "babel-loader": "^8.3.0",
-        "css-loader": "^6.7.3",
-        "file-loader": "^6.2.0",
-        "react-router-dom": "^4.3.1",
-        "style-loader": "^3.3.2",
-        "webpack": "^5.84.0"
-    }
-}
-{
   "name": "caifan-kaki",
   "version": "1.0.0",
   "description": "IT5007 Final Project",
@@ -109,6 +59,7 @@
   "homepage": "",
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
+    "@types/jwt-decode": "^3.1.0",
     "apollo-server-express": "^2.26.0",
     "bootstrap-icons": "^1.11.3",
     "express": "^4.16.4",
