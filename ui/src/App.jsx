@@ -4,7 +4,6 @@ import Homepage from './Homepage.jsx';
 import Display from './Display.jsx';
 import Add from './Add.jsx';
 import Search from './Search.jsx';
-// import jwt_decode from 'jwt-decode'
 import {jwtDecode} from 'jwt-decode';
 
 import './css/App.css';
@@ -15,24 +14,25 @@ class GoGoSG extends React.Component {
   constructor() {
     super();
     this.state = {searchplaces: [], user:{}};
+    this.icons = ['👨', '🦁', '🐯', '🐵', '🐻'];
     this.searchplaces = this.searchplaces.bind(this);
     this.handleCallbackResponse = this.handleCallbackResponse.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
     }
 
   componentDidMount() {
-    console.log('ready to to activiate google');
+    //console.log('ready to to activate google');
     google.accounts.id.initialize({
       client_id: "295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com",
       callback: this.handleCallbackResponse
      });
-     google.accounts.id.renderButton(
+    google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
       {theme:"outline", size:"small"}
      )
   }
   handleCallbackResponse(response) {
-    console.log("Encoded JWT ID token: " + response.credential);
+   // console.log("Encoded JWT ID token: " + response.credential);
     const userObject= jwtDecode(response.credential);
     console.log(userObject)
     this.setState({user:userObject})
@@ -69,6 +69,9 @@ class GoGoSG extends React.Component {
     };
 
     render() {
+
+      const randomIconIndex = Math.floor(Math.random() * this.icons.length);
+      const randomIcon = this.icons[randomIconIndex];
       return (
         <div className="container"> 
           <div className="row">
@@ -81,18 +84,17 @@ class GoGoSG extends React.Component {
               <button className="btn btn-danger m-2"><a href="/#/showplaces">Display</a></button>
               <button className="btn btn-danger m-2"><a href="/#/addplaces">Add</a></button>
               <button id="signInDiv" className="btn btn-danger m-2"></button>
-              {Object.keys(this.state.user).length !=0 &&
-                <button className="btn btn-danger m-2" onClick={(e) => this.handleSignOut(e)}>Sign Out</button>  
+              {Object.keys(this.state.user).length !==0 &&
+              <button className="btn btn-danger m-2" onClick={(e) => this.handleSignOut(e)}>Sign Out</button>  
               }
-               
-              {this.state.user && 
-                <div>
-                  <img src={this.state.user.picture}/>
-                  <h3>{this.state.user.name}</h3>
-                </div>
+              {Object.keys(this.state.user).length !==0 && 
+                  <div>
+                      <div className="icon">{randomIcon}</div>
+                    <h5>{this.state.user.family_name}</h5>
+                  </div>
               }
         </div>
-        {/* <div id="signInDiv"></div> */}
+     
         <div>
           <Router>
             <Switch>
@@ -113,19 +115,5 @@ class GoGoSG extends React.Component {
 }
 
 const element = <GoGoSG />;
-// const element = (
-//   <GoogleOAuthProvider clientId="295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com">
-//     <GoGoSG/>
-//   </GoogleOAuthProvider>
 
-// );
-
-
-// ReactDOM.render(
-//   <GoogleOAuthProvider clientId="295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com">
-//     <React.StrictMode>
-//     <GoGoSG />
-//     </React.StrictMode>
-//     </GoogleOAuthProvider>
-//    , document.getElementById('contents'));
 ReactDOM.render(element,document.getElementById('contents'));
