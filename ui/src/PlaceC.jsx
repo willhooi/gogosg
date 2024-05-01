@@ -5,8 +5,10 @@ export default class PlaceCard extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            buttonClicked: false,
             imgLoaded: false,
+            placeName: '',
+            buttonDisabled:false,
+            alreadyAdded: false,
         };
         this.fetchImage = this.fetchImage.bind(this);
         this.handler = this.handler.bind(this);
@@ -53,6 +55,7 @@ export default class PlaceCard extends React.Component {
 
     componentDidMount(){
         this.fetchAndSetImage();
+        this.listFavPlaceName();//fetch placename added previously
     };
     //ensure that img loaded is synchronized with the fetched data
     componentDidUpdate(prevProps){
@@ -60,10 +63,24 @@ export default class PlaceCard extends React.Component {
             this.fetchAndSetImage();
         }
     }
+    //FETCH favlist place name
+    async listFavPlaceName() {
+        const query = `
+        {
+          listFavPlaceName {
+            name
+          }
+        }
+        `;
+        const data = await graphQLFetch(query);
+        if (data) {
+          this.setState({ placeName: data.listFavPlaceName});
+        }
+      }
     
     //ADD TO DB USING GRAPHQLFETCH
     async addFavPlaceDetails(place){
-       console.log(place);
+       //console.log(place);
         const query = `
         mutation addFavouritePlace($placeDetails: PlaceDetailsInputs!) 
         {
@@ -71,16 +88,30 @@ export default class PlaceCard extends React.Component {
         }   
       `;
       //construct the input data
-      const { name, reviews, rating, description, type, dataset} = place;
-      const review = reviews && reviews.length > 0 ? reviews[0].text : 'No reviews available';
-      const created = new Date();
-      const placeDetails = { name, review, rating, description, created, type, dataset};
-      const res = await graphQLFetch(query, {placeDetails});
-      console.log('Added ok:',res.addFavouritePlace);
-      this.setState({buttonClicked: true});
-      };
-      
+        const { name, reviews, rating, description, type, dataset} = place;
+        const review = reviews && reviews.length > 0 ? reviews[0].text : 'No reviews available';
+        const created = new Date();
+        const placeDetails = { name, review, rating, description, created, type, dataset};
+        const res = await graphQLFetch(query, {placeDetails});
+        console.log('Added ok:',res.addFavouritePlace);
+        (res.addFavouritePlace)?
+        this.setState({
+            buttonDisabled: res.addFavouritePlace,
+        }):
+        this.setState({
+            alreadyAdded: !res.addFavouritePlace,
+            buttonDisabled: !res.addFavouritePlace
+        })
+    };
+
       render(){
+        const buttonText = this.state.buttonDisabled  ? "Added to Favourites" : "Add to Favourites";
+        const message = this.state.alreadyAdded ? 
+            <h6 className="text-warning m-2">Already added!</h6> :
+            (this.state.placeName.includes(this.props.place.name)) ? 
+            <h6 className="text-success m-2">Place added successfully!</h6> :
+            null;
+
         return(
             <div className="card-container">
             <div className="card-body row">
@@ -106,16 +137,16 @@ export default class PlaceCard extends React.Component {
                 </div>
                 <div className="button-container">
                     <button 
-                        className="btn btn-danger" 
-                        onClick={()=>this.addFavPlaceDetails(this.props.place)}
-                        disabled = {this.state.buttonClicked}
+                        className="btn btn-success"
+                        onClick={() => this.addFavPlaceDetails(this.props.place)}
+                        disabled={this.state.buttonDisabled}
                     >
-                        {this.state.buttonClicked ? "Added to Favourites" : "Add to Favourites"}
+                        {buttonText}
                     </button>
                 </div>
+                {message}
             </div>
         </div>
-
         );
     }
 }

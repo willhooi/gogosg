@@ -10,6 +10,7 @@ export default class Add extends React.Component {
       description: '',
       rating: '',
       type: '',
+      showDisplay: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,13 +29,15 @@ export default class Add extends React.Component {
       dataset:'user-gen'
     };
     await this.addInput(placeDetails);
+    //clear
     this.setState({
       name: '',
       review: '',
       description: '',
       rating: '',
       type: '',
-      newData: placeDetails
+      newData: placeDetails,
+      showDisplay:true
     });
    
   };
@@ -62,19 +65,16 @@ export default class Add extends React.Component {
 
   render(){
     return (
-        <div row justify-content-center>
-            <div>
-                <Display data ={this.state.newData}/>
-            </div>
-            <div className="row justify-content-center">
+        <div className="row">
+            <div className="card-container">
             <div className="col-md-6">
-              <h5>Add your own favourite place</h5>
+              <h5>Add your own GO to favourite place</h5>
               <form onSubmit={this.handleSubmit}>
               <input
                   type="text"
                   name="name"
                   className="form-control"
-                  placeholder="Enter name"
+                  placeholder="Name of place"
                   value = {this.state.name}
                   onChange = {this.handleInputChange}
                   required
@@ -84,7 +84,7 @@ export default class Add extends React.Component {
                   type="text"
                   name="review"
                   className="form-control"
-                  placeholder="Enter Review"
+                  placeholder="What you think about of this place?"
                   value = {this.state.review}
                   onChange = {this.handleInputChange}
                   required
@@ -94,7 +94,7 @@ export default class Add extends React.Component {
                   type="text"
                   name="description"
                   className="form-control"
-                  placeholder="Enter description"
+                  placeholder="How do you describe this place"
                   value = {this.state.description}
                   onChange = {this.handleInputChange}
                   required
@@ -107,12 +107,12 @@ export default class Add extends React.Component {
                     onChange={this.handleInputChange}
                     required
                   >
-                    <option value="">Select Rating</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="">How would rate this place?</option>
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
                   </select>
                 
                   <select
@@ -122,7 +122,7 @@ export default class Add extends React.Component {
                     onChange={this.handleInputChange}
                     required
                   >
-                    <option value="">Select Type</option>
+                    <option value="">What type of place is this?</option>
                     <option value="Attractions">Attractions</option>
                     <option value="Accommodation">Accomodation</option>
                     <option value="Bars & Clubs">Bars & Clubs</option>
@@ -135,6 +135,7 @@ export default class Add extends React.Component {
               </form>
             </div>
             </div>
+            {this.state.showDisplay && <Display newData={this.state.newData}/>}
         </div>);
 	}
 }

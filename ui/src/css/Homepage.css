@@ -1,0 +1,17 @@
+.image-container {
+    display: flex; /* Use flexbox layout */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    overflow: hidden; /* Hides any overflow from the container */
+    height: 50vh; /* Sets the height of the container to 30% of the viewport height */
+}
+
+.image-container img {
+    width: auto; /* Ensures the image width adjusts automatically to maintain aspect ratio */
+    height: 100%; /* Sets the height of the image to 100% of the container height */
+}
+.homecard-container {
+    border: 2px solid #ff3333; /* Sets the border color to red */
+    border-radius: 10px; /* Rounds the corners of the border */
+    padding: 20px; /* Adds some padding inside the card */
+}

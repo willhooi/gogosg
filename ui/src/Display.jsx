@@ -1,39 +1,13 @@
+import Share from "./Share.jsx";
 import graphQLFetch from "./graphqlfetch.js";
 import './css/Display.css';
+import { getCardColorClass, getIconType } from "./utils.js";
 
 function PlaceCard(props) {
     const place = props.place;
     const createdDate = new Date(place.created).toLocaleDateString();
-    
-    //colour of card changes depending on dataset type
-    let cardColorClass='';
-    //console.log(place.dataset);
-    if (place.dataset == 'attractions') {
-        cardColorClass = 'card-orange';
-    } else if (place.dataset == 'accommodation') {
-        cardColorClass = 'card-green';
-    } else if (place.dataset == 'bars-clubs') {
-        cardColorClass = 'card-purple';
-    } else if (place.dataset == 'user-gen') {
-        cardColorClass = 'card-blue';
-    }
-    else {
-        cardColorClass = 'card-red';
-    }
-    
-    //icons changes depending on type (https://icons.getbootstrap.com/)
-    let icontype ='bi-alarm';
-    if (place.type=='Cafe'|| place.type=='Restaurants'||place.type=='Restaurant'){
-        icontype='bi bi-egg-fried';
-    }else if (place.type=='Hotels'){
-        icontype='bi bi-hospital';
-    }else if (place.type=='Nature & Wildlife'){
-        icontype='bi bi-tree';
-    }
-    else {
-        icontype='bi bi-suitcase';
-    }
-    //console.log(place.type,icontype);
+    const cardColorClass = getCardColorClass(place.dataset);
+    const icontype = getIconType(place.type);
 
     const deleteFavourite = async()=>{
        // console.log(place.name);
@@ -62,7 +36,7 @@ function PlaceCard(props) {
                     <p className="card-text mb-0">Added: {createdDate}</p>
                 </div>
                 <div className="button-container">
-                    <button className="btn btn-danger buttonContainer m-2" onClick={deleteFavourite}>
+                    <button className="btn btn-secondary buttonContainer m-2" onClick={deleteFavourite}>
                         Remove
                     </button>
                 </div>
@@ -74,7 +48,9 @@ function PlaceCard(props) {
 export default class Display extends React.Component {
     constructor() {
       super();
-      this.state = { places: []};
+      this.state = { 
+        places: [],
+    };
     }
   
     componentDidMount() {
@@ -110,17 +86,18 @@ export default class Display extends React.Component {
       const data = await graphQLFetch(query);
       if (data) {
         this.setState({ places: data.listFavourites });
-        console.log(this.state.places);
+       // console.log('Fav places state:',this.state.places);
       }
     }
 
     deleteFavourite = (name) =>{
         console.log('deleting from state:',name);
         this.setState((prevState)=>({
-            places: prevState.places.filter((place)=>place.name !==name)
+            places: prevState.places.filter(place=>place.name !==name)
         }));
-        console.log('display state:',this.state.places);
+        //console.log('display state:',this.state.places);
     };
+
 
     render() {
         const placesCards = this.state.places.map((place, index) => (
@@ -128,21 +105,28 @@ export default class Display extends React.Component {
         ));
 
         const cardRows = [];
-        for (let i = 0; i < placesCards.length; i += 4) {
-            cardRows.push(
-                <div key={i / 4} className="row">
-                    {placesCards.slice(i, i + 4)}
-                </div>
-            );
-        }
+            for (let i = 0; i < placesCards.length; i += 4) {
+                cardRows.push(
+                    <div key={i / 4} className="row">
+                        {placesCards.slice(i, i + 4)}
+                    </div>
+                );
+            }
+        //if nothing to display
+        let displayContent;
+        (placesCards.length > 0) ? 
+            displayContent = cardRows : displayContent=<h6>No card available</h6>;
 
         return (
             <div className='cardDisplay container'>
                 <div className="row justify-content-center">
-                    <h5 className="text-center">Favourite Things to-do List</h5>
+                    <h5 className="text-center">My favourite to GO places</h5>
                 </div>
                 <div className="row">
-                    {cardRows}
+                    {displayContent}
+                </div>
+                <div>
+                    <Share />
                 </div>
             </div>
         );
