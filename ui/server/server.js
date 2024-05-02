@@ -82,7 +82,6 @@ async function listFavPlaceName() {
 }
 
 async function listUserFavRecord(_,{user}) {
-  console.log('listFavRecorddb:',user);
   const userFavRecord = await db.collection('places').find({user:user}).toArray();
   return userFavRecord;
 }

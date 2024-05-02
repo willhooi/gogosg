@@ -58,10 +58,9 @@ export default class Display extends React.Component {
   
     componentDidMount() {
       //this.loadData();
-      this.listUserFavRecord(this.state.user); //query userfav record
-      console.log('list fav:',this.state.user);
-    
+      this.listUserFavRecord(this.state.user); //query user personal fav record instead
     }
+    
     //update display when props is received from Add
     componentDidUpdate(prevProps) {
         if (this.props.data !== prevProps.data) {

@@ -10,11 +10,12 @@ import './css/App.css';
 class GoGoSG extends React.Component {
   constructor() {
     super();
-    this.state = { searchplaces: [], user: {} };
-    this.icons = ['👨', '🦁', '🐯', '🐵', '🐻', '🐹', '🐮', '🐷'];
+    this.state = { searchplaces: [], user: {}, emoji:'👨'};
     this.searchplaces = this.searchplaces.bind(this);
     this.handleCallbackResponse = this.handleCallbackResponse.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+
    
   }
 
@@ -49,8 +50,11 @@ class GoGoSG extends React.Component {
     this.setState({ user: {}});
     ()=>{document.getElementById("signInDiv").hidden = false};
     window.location.reload();
-    
-  
+  }
+
+  handleInputChange(e){
+    this.setState({emoji: e.target.value});
+    console.log('emoji:',this.state.emoji);
   }
 
   async searchplaces(searchItem, searchType){
@@ -92,20 +96,29 @@ class GoGoSG extends React.Component {
                 <div className="icon text-center">
                 🔒
                 </div>
+                <div className="text-center">
+                <select
+                  id="rating"
+                  onChange={this.handleInputChange}
+                  value={this.state.emoji}
+                >
+                  <option value="👨">Select Avatar</option>
+                  <option value="🦁">🦁</option>
+                  <option value="🐯">🐯</option>
+                  <option value="🐵">🐵</option>
+                  <option value="🐻">🐻</option>
+                  <option value="🐹">🐹</option>
+                  <option value="🐮">🐮</option>
+                  <option value="🐷">🐷</option>
+                </select>
+                </div>
               <div className="col"></div>
             </div>
-            <div className="avatar">
-              <input type="text" />
-            </div>
-            
             <div className="d-flex justify-content-center mt-2 p-2" id="signInDiv">
             </div>
           </div>
         );
       }
-  
-      const randomIconIndex = Math.floor(Math.random() * this.icons.length);
-      const randomIcon = this.icons[randomIconIndex];
   
       return (
         <div className="container">
@@ -119,7 +132,7 @@ class GoGoSG extends React.Component {
               <button className="btn btn-danger m-2"><a href="/#/showplaces">Display</a></button>
               <button className="btn btn-danger m-2"><a href="/#/addplaces">Add</a></button>
               <button className="btn btn-danger m-2" onClick={this.handleSignOut}>Sign Out</button>
-              <div className="icon">{randomIcon}</div>
+              <div className="icon">{this.state.emoji}</div>
               <h5>{this.state.user.family_name}</h5>
             </div>
             <div>
