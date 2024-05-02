@@ -29,11 +29,10 @@ input PlaceDetailsInputs {
 
 }
 
-##### Top level declarations
-
 type Query {
   listFavourites: [Place!]
   listFavPlaceName:[Place!]
+  listUserFavRecord(user:String):[Place!]
 }
 
 type Mutation {

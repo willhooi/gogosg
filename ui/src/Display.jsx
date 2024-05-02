@@ -48,15 +48,19 @@ function PlaceCard(props) {
 }
 
 export default class Display extends React.Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = { 
         places: [],
+        user: this.props.user,
     };
     }
   
     componentDidMount() {
-      this.loadData();
+      //this.loadData();
+      this.listUserFavRecord(this.state.user); //query userfav record
+      console.log('list fav:',this.state.user);
+    
     }
     //update display when props is received from Add
     componentDidUpdate(prevProps) {
@@ -93,6 +97,30 @@ export default class Display extends React.Component {
       }
     }
 
+    async listUserFavRecord(user) {
+        const query = `
+        query listUserFavRecord($user:String){
+            listUserFavRecord(user:$user){
+                id
+                name
+                description
+                review
+                rating
+                created 
+                type
+                dataset
+                user
+            }
+        }
+        `;
+        const data = await graphQLFetch(query,{user});
+        console.log('user:',user);
+        if (data) {
+          this.setState({ places: data.listUserFavRecord });
+         // console.log('Fav places state:',this.state.places);
+        }
+      }
+
     deleteFavourite = (name) =>{
         console.log('deleting from state:',name);
         this.setState((prevState)=>({
@@ -104,7 +132,7 @@ export default class Display extends React.Component {
 
     render() {
         const placesCards = this.state.places.map((place, index) => (
-            <PlaceCard key={index} place={place} onDelete={this.deleteFavourite} />
+            <PlaceCard key={index} place={place} onDelete={this.deleteFavourite} user={this.state.user}/>
         ));
 
         const cardRows = [];
