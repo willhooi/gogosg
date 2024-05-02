@@ -18,6 +18,7 @@ const placesDB = [
    created: new Date(),
    type: 'Restaurant',
    dataset:'attractions',
+   user:'Admin 😎',
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ const placesDB = [
     created: new Date(),
     type: 'Hawker',
     dataset:'food-beverages',
+    user:'Admin 😎'
    },
    {
     id: 3,
@@ -38,6 +40,7 @@ const placesDB = [
     created: new Date(),
     type: 'Hotel',
     dataset:'accommodation',
+    user:'Admin 😎'
    },
  
 ];

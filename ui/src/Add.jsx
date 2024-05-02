@@ -2,8 +2,8 @@ import Display from "./Display.jsx";
 import graphQLFetch from "./graphqlfetch.js";
 
 export default class Add extends React.Component {
-	constructor() {
-    super();
+	constructor(props) {
+    super(props);
     this.state = {
       name: '',
       review: '',
@@ -11,6 +11,7 @@ export default class Add extends React.Component {
       rating: '',
       type: '',
       showDisplay: false,
+      user: this.props.user,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,7 +27,8 @@ export default class Add extends React.Component {
       rating: parseInt(this.state.rating),
       type: this.state.type,
       created: new Date(),
-      dataset:'user-gen'
+      dataset:'user-gen',
+      user: this.state.user,
     };
     await this.addInput(placeDetails);
     //clear
@@ -37,7 +39,8 @@ export default class Add extends React.Component {
       rating: '',
       type: '',
       newData: placeDetails,
-      showDisplay:true
+      showDisplay:true,
+      user:'',
     });
    
   };

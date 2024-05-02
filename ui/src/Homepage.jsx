@@ -1,4 +1,3 @@
-import logo from './assets/cityscape-singapore.jpg';
 import './css/Homepage.css'; 
 import {Link} from 'react-router-dom';
 
@@ -11,9 +10,6 @@ export default class Homepage extends React.Component {
         return (
                 <div className="row justify-content-center"> 
                         <div className="col-md-6">
-                            <div className="image-container">
-                                <img src={logo} alt="cityscape" />
-                            </div>
                             <div>
                                 <p className="text-center m-2"><b>GO GO SG</b> is a fun way to check out 
                                 interesting place of interest for tourist in Singapore. With GO GO SG, you can gamify your travel

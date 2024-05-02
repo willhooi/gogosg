@@ -10,6 +10,7 @@ type Place {
   created: GraphQLDate
   type: String
   dataset: String
+  user: String
 }
 
 input PlaceInputs {
@@ -24,6 +25,7 @@ input PlaceDetailsInputs {
   created: GraphQLDate
   type: String
   dataset: String
+  user: String
 
 }
 
