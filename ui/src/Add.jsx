@@ -69,8 +69,8 @@ export default class Add extends React.Component {
   render(){
     return (
         <div className="row">
-            <div className="card-container">
-            <div className="col-md-6">
+            <div className="card-container col-md-6">
+           
               <h5>Add your own GO to favourite place</h5>
               <form onSubmit={this.handleSubmit}>
               <input
@@ -136,7 +136,6 @@ export default class Add extends React.Component {
                     <button className="btn btn-danger m-2">Add</button>
                   </div>
               </form>
-            </div>
             </div>
             {this.state.showDisplay && <Display newData={this.state.newData}/>}
         </div>);

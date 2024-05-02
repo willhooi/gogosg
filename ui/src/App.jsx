@@ -6,7 +6,6 @@ import Add from './Add.jsx';
 import Search from './Search.jsx';
 import {jwtDecode} from 'jwt-decode';
 import './css/App.css';
-import logo from './assets/cityscape-singapore.jpg';
 
 class GoGoSG extends React.Component {
   constructor() {
@@ -90,11 +89,9 @@ class GoGoSG extends React.Component {
             </div>
             <div className="row">
               <div className="col"></div>
-              <div className="card col-md-6 d-flex justify-content-center  bg-danger">
-                <div className="card-body image-container">
-                <img src={logo} alt="cityscape" />
+                <div className="icon text-center">
+                🔒
                 </div>
-              </div>
               <div className="col"></div>
             </div>
             
