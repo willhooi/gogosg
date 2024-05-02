@@ -5,42 +5,40 @@ import Display from './Display.jsx';
 import Add from './Add.jsx';
 import Search from './Search.jsx';
 import {jwtDecode} from 'jwt-decode';
-
 import './css/App.css';
-
-
 
 class GoGoSG extends React.Component {
   constructor() {
     super();
-    this.state = {searchplaces: [], user:{}};
-    this.icons = ['👨', '🦁', '🐯', '🐵', '🐻'];
+    this.state = { searchplaces: [], user: {} };
+    this.icons = ['👨', '🦁', '🐯', '🐵', '🐻', '🐹', '🐮', '🐷'];
     this.searchplaces = this.searchplaces.bind(this);
     this.handleCallbackResponse = this.handleCallbackResponse.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
-    }
+  }
 
   componentDidMount() {
-    //console.log('ready to to activate google');
     google.accounts.id.initialize({
       client_id: "295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com",
       callback: this.handleCallbackResponse
-     });
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      {theme:"outline", size:"small"}
-     )
+    });
+    if (Object.keys(this.state.user).length === 0) {
+      google.accounts.id.renderButton(
+        document.getElementById("signInDiv"),
+        { theme: "outline", size: "small", 
+        type: "standard", logo_alignment:"center"}
+      );
+    }
   }
-  handleCallbackResponse(response) {
-   // console.log("Encoded JWT ID token: " + response.credential);
-    const userObject= jwtDecode(response.credential);
-    console.log(userObject)
-    this.setState({user:userObject})
-    document.getElementById("signInDiv").hidden = true;
 
+  handleCallbackResponse(response) {
+    const userObject = jwtDecode(response.credential);
+    this.setState({ user: userObject });
+    document.getElementById("signInDiv").hidden = true;
   }
-  handleSignOut(event){
-    this.setState({user:{}});
+
+  handleSignOut() {
+    this.setState({ user: {} });
     document.getElementById("signInDiv").hidden = false;
   }
 
@@ -69,51 +67,51 @@ class GoGoSG extends React.Component {
     };
 
     render() {
-
+      if (Object.keys(this.state.user).length === 0) {
+        return (
+          <div className="container">
+            <div className="row">
+              <h1 className="text-center"><b>GO GO SG</b></h1>
+              <p className="text-center">Collect your favourite places in Singapore!</p>
+            </div>
+          </div>
+        );
+      }
+  
       const randomIconIndex = Math.floor(Math.random() * this.icons.length);
       const randomIcon = this.icons[randomIconIndex];
+  
       return (
-        <div className="container"> 
+        <div className="container">
           <div className="row">
             <h1 className="text-center"><b>GO GO SG</b></h1>
             <p className="text-center">Collect your favourite places in Singapore!</p>
-  
             <div className="col text-center">
               <button className="btn btn-danger m-2"><a href="/#/home">Home</a></button>
               <button className="btn btn-danger m-2"><a href="/#/search">Search</a></button>
               <button className="btn btn-danger m-2"><a href="/#/showplaces">Display</a></button>
               <button className="btn btn-danger m-2"><a href="/#/addplaces">Add</a></button>
-              <button id="signInDiv" className="btn btn-danger m-2"></button>
-              {Object.keys(this.state.user).length !==0 &&
-              <button className="btn btn-danger m-2" onClick={(e) => this.handleSignOut(e)}>Sign Out</button>  
-              }
-              {Object.keys(this.state.user).length !==0 && 
-                  <div>
-                      <div className="icon">{randomIcon}</div>
-                    <h5>{this.state.user.family_name}</h5>
-                  </div>
-              }
-        </div>
-     
-        <div>
-          <Router>
-            <Switch>
-              <Redirect exact from="/" to="/home" />
-              <Route path="/home" component={Homepage} />
-              <Route path="/showplaces" component={Display} />
-              <Route path="/addplaces" component={Add} />
-              <Route path="/search" render={
-                (props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />
-              }/>
-            </Switch>
+              <button className="btn btn-danger m-2" onClick={this.handleSignOut}>Sign Out</button>
+              <div className="icon">{randomIcon}</div>
+              <h5>{this.state.user.family_name}</h5>
+            </div>
+            <div>
+              <Router>
+                <Switch>
+                  <Redirect exact from="/" to="/home" />
+                  <Route path="/home" component={Homepage} />
+                  <Route path="/showplaces" component={Display} />
+                  <Route path="/addplaces" component={Add} />
+                  <Route path="/search" render={(props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />} />
+                </Switch>
               </Router>
             </div>
           </div>
         </div>
       );
     }
-}
-
-const element = <GoGoSG />;
-
-ReactDOM.render(element,document.getElementById('contents'));
+  }
+  
+  const element = <GoGoSG />;
+  
+  ReactDOM.render(element, document.getElementById('contents'));
