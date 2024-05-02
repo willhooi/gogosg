@@ -1,7 +1,7 @@
 ﻿# GoGo SG (formerly known as CaiFan Kaki)
 
 ## Team 1
-1. Li Weishi
+1. Li Weishi -A0265035J
 2. Hooi Yuk Chuan (William) -A0265028E
 
 
