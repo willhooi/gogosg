@@ -33,10 +33,9 @@ export default class Search extends React.Component {
     render() {
       return (
         <div className="row">
-          <div className="card-container">
-            <h5>GO where in Singapore?</h5>
-            <p>Search different places of interest.You can specify different attraction types and see what come up.</p>
-            <div className="col-md-6">
+          <div className="card-container col-md-6">
+              <h5>GO where in Singapore?</h5>
+              <p>Search different places of interest.You can specify different attraction types and see what come up.</p>
               <form name="searchItem" onSubmit={this.handleSubmit}>
                 <select
                   className="form-select"
@@ -57,9 +56,6 @@ export default class Search extends React.Component {
                 />
                 <button className="btn btn-danger m-2">Search</button>
               </form>
-            </div>
-            <div>
-            </div>
           </div>
             <ShowPlaces places={this.props.places} key={this.state.key} user={this.props.user} />
         </div>
