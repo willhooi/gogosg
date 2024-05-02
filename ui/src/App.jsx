@@ -94,6 +94,9 @@ class GoGoSG extends React.Component {
                 </div>
               <div className="col"></div>
             </div>
+            <div className="avatar">
+              <input type="text" />
+            </div>
             
             <div className="d-flex justify-content-center mt-2 p-2" id="signInDiv">
             </div>
@@ -124,15 +127,17 @@ class GoGoSG extends React.Component {
                 <Switch>
                   <Redirect exact from="/" to="/home" />
                   <Route path="/home" component={Homepage} />
-                  <Route path="/showplaces" component={Display} />
+                  <Route path="/showplaces" 
+                    render={(props) => <Display {...props} 
+                    user={this.state.user.name} />} />
                   <Route path="/addplaces" 
                     render={(props) => <Add {...props} 
-                    user={this.state.user.family_name+' '+randomIcon} />} />
+                    user={this.state.user.name} />} />
                   <Route path="/search" 
                     render={(props) => <Search {...props} 
                     searchplaces={this.searchplaces} 
                     places={this.state.searchplaces}
-                    user={this.state.user.family_name+' '+randomIcon}
+                    user={this.state.user.name}
                      />} />
                 </Switch>
               </Router>

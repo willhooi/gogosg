@@ -31,6 +31,7 @@ const resolvers = {
   Query: {
     listFavourites,
     listFavPlaceName,
+    listUserFavRecord,
   },
   Mutation: {
     addFavouritePlace,
@@ -78,6 +79,12 @@ async function listFavourites() {
 async function listFavPlaceName() {
   const placeName = await db.collection('favlist').find({}).toArray();
   return placeName;
+}
+
+async function listUserFavRecord(_,{user}) {
+  console.log('listFavRecorddb:',user);
+  const userFavRecord = await db.collection('places').find({user:user}).toArray();
+  return userFavRecord;
 }
 
 async function getNextSequence(name) {
