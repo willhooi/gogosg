@@ -2,14 +2,16 @@ import ShowPlaces from "./ShowPlaces.jsx";
 import './css/Display.css';
 
 export default class Search extends React.Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
         searchType: 'attractions',
         key:0, //keep track of changes
       };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleSearchTypeChange = this.handleSearchTypeChange.bind(this);
+      console.log('user passed to search:',this.props.user);
+     
     }
   
     handleSubmit(e) {
@@ -27,7 +29,6 @@ export default class Search extends React.Component {
         key: this.state.key +1,//use as event listener
       });
     }
-
   
     render() {
       return (
@@ -60,7 +61,7 @@ export default class Search extends React.Component {
             <div>
             </div>
           </div>
-            <ShowPlaces places={this.props.places} key={this.state.key} />
+            <ShowPlaces places={this.props.places} key={this.state.key} user={this.props.user} />
         </div>
       );
     }

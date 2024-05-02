@@ -33,7 +33,9 @@ function PlaceCard(props) {
                     <p className="card-text mb-1">{place.description}</p>
                     <p className="card-text mb-1">Review: {place.review}</p>
                     <p className="card-text mb-1">Rating: {place.rating}</p>
-                    <p className="card-text mb-0">Added: {createdDate}</p>
+                    <p className="card-text mb-0">Date: {createdDate}</p>
+                    <p className="card-text mb-0">Added by: {place.user}</p>
+
                 </div>
                 <div className="button-container">
                     <button className="btn btn-secondary buttonContainer m-2" onClick={deleteFavourite}>
@@ -80,6 +82,7 @@ export default class Display extends React.Component {
           created 
           type
           dataset
+          user
         }
       }
       `;

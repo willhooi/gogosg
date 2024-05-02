@@ -6,6 +6,7 @@ import Add from './Add.jsx';
 import Search from './Search.jsx';
 import {jwtDecode} from 'jwt-decode';
 import './css/App.css';
+import logo from './assets/cityscape-singapore.jpg';
 
 class GoGoSG extends React.Component {
   constructor() {
@@ -15,31 +16,42 @@ class GoGoSG extends React.Component {
     this.searchplaces = this.searchplaces.bind(this);
     this.handleCallbackResponse = this.handleCallbackResponse.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+   
   }
 
-  componentDidMount() {
+  componentDidMount(){
+    this.initButton();
+    this.renderButton();
+  }
+
+  initButton(){
     google.accounts.id.initialize({
       client_id: "295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com",
-      callback: this.handleCallbackResponse
+      callback: this.handleCallbackResponse   
     });
-    if (Object.keys(this.state.user).length === 0) {
-      google.accounts.id.renderButton(
-        document.getElementById("signInDiv"),
-        { theme: "outline", size: "small", 
-        type: "standard", logo_alignment:"center"}
-      );
-    }
+  }
+
+  renderButton(){
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "small", 
+      type: "standard"}
+    );
   }
 
   handleCallbackResponse(response) {
     const userObject = jwtDecode(response.credential);
     this.setState({ user: userObject });
-    document.getElementById("signInDiv").hidden = true;
+    ()=>{document.getElementById("signInDiv").hidden = true};
+    console.log('user:',userObject);
   }
 
   handleSignOut() {
-    this.setState({ user: {} });
-    document.getElementById("signInDiv").hidden = false;
+    this.setState({ user: {}});
+    ()=>{document.getElementById("signInDiv").hidden = false};
+    window.location.reload();
+    
+  
   }
 
   async searchplaces(searchItem, searchType){
@@ -67,12 +79,26 @@ class GoGoSG extends React.Component {
     };
 
     render() {
-      if (Object.keys(this.state.user).length === 0) {
+      //if not login, login page appears
+      if (!this.state.user || Object.keys(this.state.user).length === 0) {
         return (
           <div className="container">
+          
             <div className="row">
               <h1 className="text-center"><b>GO GO SG</b></h1>
               <p className="text-center">Collect your favourite places in Singapore!</p>
+            </div>
+            <div className="row">
+              <div className="col"></div>
+              <div className="card col-md-6 d-flex justify-content-center  bg-danger">
+                <div className="card-body image-container">
+                <img src={logo} alt="cityscape" />
+                </div>
+              </div>
+              <div className="col"></div>
+            </div>
+            
+            <div className="d-flex justify-content-center mt-2 p-2" id="signInDiv">
             </div>
           </div>
         );
@@ -86,6 +112,7 @@ class GoGoSG extends React.Component {
           <div className="row">
             <h1 className="text-center"><b>GO GO SG</b></h1>
             <p className="text-center">Collect your favourite places in Singapore!</p>
+          
             <div className="col text-center">
               <button className="btn btn-danger m-2"><a href="/#/home">Home</a></button>
               <button className="btn btn-danger m-2"><a href="/#/search">Search</a></button>
@@ -101,8 +128,15 @@ class GoGoSG extends React.Component {
                   <Redirect exact from="/" to="/home" />
                   <Route path="/home" component={Homepage} />
                   <Route path="/showplaces" component={Display} />
-                  <Route path="/addplaces" component={Add} />
-                  <Route path="/search" render={(props) => <Search {...props} searchplaces={this.searchplaces} places={this.state.searchplaces} />} />
+                  <Route path="/addplaces" 
+                    render={(props) => <Add {...props} 
+                    user={this.state.user.family_name+' '+randomIcon} />} />
+                  <Route path="/search" 
+                    render={(props) => <Search {...props} 
+                    searchplaces={this.searchplaces} 
+                    places={this.state.searchplaces}
+                    user={this.state.user.family_name+' '+randomIcon}
+                     />} />
                 </Switch>
               </Router>
             </div>

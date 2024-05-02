@@ -58,6 +58,7 @@ async function deleteFavouritePlace(_,{placeName}){
 async function addFavouritePlace(_, {placeDetails}) {
   //check if already in fav list
   const favlisted = await db.collection('favlist').findOne({name:placeDetails.name});
+  
   if (!favlisted){
     placeDetails.id = await getNextSequence('places');
     await db.collection('favlist').insertOne({ name: placeDetails.name});
