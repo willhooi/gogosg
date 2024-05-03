@@ -5,8 +5,8 @@
 2. Hooi Yuk Chuan (William) -A0265028E
 
 ## Demo
-[YouTube link](https://youtu.be/wtMuGWVAUeY)
-[Google Drive link](https://drive.google.com/file/d/19sBvkV1BiO5EZSL869OPkujr1oPFDxJJ/view?usp=drive_link)
+* [YouTube link](https://youtu.be/wtMuGWVAUeY)
+* [Google Drive link](https://drive.google.com/file/d/19sBvkV1BiO5EZSL869OPkujr1oPFDxJJ/view?usp=drive_link)
 
 ## Overview
 
@@ -124,6 +124,4 @@ Addtional Features include:
 1. Project is inspired by a similar project by [Damian Boh](https://github.com/damianboh/sg_attractions_outings_django)
 2. [ChatGPT](https://chat.openai.com/) is used as assistive tool to generate most CSS files, utils.js, fetchimage blob function, passing props to some components, checking for & fixing errors and suggest improvements on general code aesthetics.
 3. Code base is heavily adapted from IT5007 assignment templates and modified accordingly. 
-
-
 
