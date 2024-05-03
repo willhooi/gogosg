@@ -4,6 +4,9 @@
 1. Li Weishi -A0265035J
 2. Hooi Yuk Chuan (William) -A0265028E
 
+## Demo
+[YouTube link](https://youtu.be/wtMuGWVAUeY)
+[Google Drive link](https://drive.google.com/file/d/19sBvkV1BiO5EZSL869OPkujr1oPFDxJJ/view?usp=drive_link)
 
 ## Overview
 

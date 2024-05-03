@@ -15,8 +15,6 @@ class GoGoSG extends React.Component {
     this.handleCallbackResponse = this.handleCallbackResponse.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-
-   
   }
 
   componentDidMount(){
@@ -24,6 +22,7 @@ class GoGoSG extends React.Component {
     this.renderButton();
   }
 
+  //GOOGLE SIGN-IN
   initButton(){
     google.accounts.id.initialize({
       client_id: "295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com",
@@ -43,7 +42,7 @@ class GoGoSG extends React.Component {
     const userObject = jwtDecode(response.credential);
     this.setState({ user: userObject });
     ()=>{document.getElementById("signInDiv").hidden = true};
-    console.log('user:',userObject);
+  //console.log('user:',userObject);
   }
 
   handleSignOut() {
@@ -54,7 +53,7 @@ class GoGoSG extends React.Component {
 
   handleInputChange(e){
     this.setState({emoji: e.target.value});
-    console.log('emoji:',this.state.emoji);
+   // console.log('emoji:',this.state.emoji);
   }
 
   async searchplaces(searchItem, searchType){
@@ -78,10 +77,10 @@ class GoGoSG extends React.Component {
       });
       const data = await response.json();	
       this.setState({searchplaces : data.data });
-      console.log(this.state.searchplaces);
+      //console.log(this.state.searchplaces);
     };
 
-    render() {
+  render() {
       //if not login, login page appears
       if (!this.state.user || Object.keys(this.state.user).length === 0) {
         return (

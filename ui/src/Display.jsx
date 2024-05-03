@@ -52,7 +52,7 @@ export default class Display extends React.Component {
       super(props);
       this.state = { 
         places: [],
-        user: this.props.user,
+        user: this.props.user,//get username from login
     };
     }
   
@@ -113,7 +113,7 @@ export default class Display extends React.Component {
         }
         `;
         const data = await graphQLFetch(query,{user});
-        console.log('user:',user);
+       // console.log('user:',user);
         if (data) {
           this.setState({ places: data.listUserFavRecord });
          // console.log('Fav places state:',this.state.places);

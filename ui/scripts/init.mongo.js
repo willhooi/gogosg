@@ -9,6 +9,7 @@ db.places.deleteMany({});
 
 //INITIAL DATA
 const placesDB = [
+  /*
   {
    id: 1,
    name: 'KimChi Express',
@@ -42,7 +43,7 @@ const placesDB = [
     dataset:'accommodation',
     user:'Admin 😎'
    },
- 
+ */
 ];
 
 db.places.insertMany(placesDB);
