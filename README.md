@@ -1,4 +1,5 @@
 ﻿# GoGo SG
+IT5007 Final Project Submission
 
 ## Team 1
 1. Li Weishi -A0265035J
@@ -67,7 +68,7 @@ Addtional Features include:
 3. Choice of emoji icons as avatars as a bonus fun feature to improve overall site visuals.✌
 
 ## Architecture Diagram
-<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv3.jpeg" width="500">
+<img src="https://github.com/IT5007-2320/course-project-whlws/blob/main/ui/src/assets/gogosgv4.jpeg" width="600">
 
 ### Authentication
 1. At login, user sign in using their Google account credentials. Client page requests access and upon successful authorization, access token (JWT) will be sent back.
@@ -90,6 +91,11 @@ Addtional Features include:
 ### Back-end Considerations
 1. Query to DB uses user's name obtained from Google sign-in as a filter to retrieve only data related to ther user. This allow user to maintain session and persistant data even after user log off and logs in again.
 2. Initial data are inserted automatically but should be not appear to users. Users will only see those that they added i.e. favourite cards.
+
+### 3rd Party Applications
+1. The [Singapore Tourism Information & Service Hub (TIH) API](https://tih-dev.stb.gov.sg/api-products-documentation) provides the attractions data (limited to 20 items per query).
+2. [EmailJS](https://www.emailjs.com/) webservice is used to send templated-email to external users.
+3. [Google Identity Sign In API](https://developers.google.com/identity/sign-in/web/sign-in) to sign in users as login using their Google accounts.
 
 ## Shared Coding Guidelines
 * To start, clone remotely ```git clone https://github.com/IT5007-2320/course-project-whlws.git```
