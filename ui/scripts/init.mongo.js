@@ -9,20 +9,9 @@ db.places.deleteMany({});
 
 //INITIAL DATA
 const placesDB = [
-  /*
+/*
   {
-   id: 1,
-   name: 'KimChi Express',
-   description: 'Established since 2021', 
-   review: 'This is good!',
-   rating: 4.2,
-   created: new Date(),
-   type: 'Restaurant',
-   dataset:'attractions',
-   user:'Admin 😎',
-  },
-  {
-    id: 2,
+    id: 1,
     name: 'Final Desti-Nasi',
     description: 'Kerana anda tiada pilihan', 
     review: 'Best nasi padang in Singapore',
@@ -30,20 +19,10 @@ const placesDB = [
     created: new Date(),
     type: 'Hawker',
     dataset:'food-beverages',
-    user:'Admin 😎'
+    user:'Admin 😎',
+    email: 'abc@gmail.com'
    },
-   {
-    id: 3,
-    name: 'Hotel Jiakalifornia',
-    description: 'This is a place for spicy time', 
-    review: 'Tried checking in but cannot seemed to checkout..',
-    rating: 4.8,
-    created: new Date(),
-    type: 'Hotel',
-    dataset:'accommodation',
-    user:'Admin 😎'
-   },
- */
+*/
 ];
 
 db.places.insertMany(placesDB);
@@ -52,11 +31,9 @@ print('Inserted', count, 'places');
 
 //initialize favourite list for names
 const initialFavourite = [
-  /*
-    {name: 'Kimchi Express'}, 
+/*
     {name: 'Final Desti-Nasi'},  
-    {name: 'Hotel Jiakalifornia'},
-    */
+*/
 ];
 db.favlist.deleteMany({});
 db.favlist.insertMany(initialFavourite);

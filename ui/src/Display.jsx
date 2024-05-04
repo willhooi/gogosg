@@ -11,17 +11,20 @@ function PlaceCard(props) {
 
     const deleteFavourite = async()=>{
        // console.log(place.name);
+       try {
         const query = `
             mutation deleteFavouritePlace($placeName:String){
                 deleteFavouritePlace(placeName:$placeName)
             }
         `;
-        //construct delete parameter
         const placeName = place.name;
-        const data = await graphQLFetch(query, {placeName});
-        if (data){
+        const data = await graphQLFetch(query, { placeName });
+        if (data) {
             props.onDelete(placeName);
         }
+    } catch (error) {
+        console.error('Error deleting favorite place:', error);
+    }
     }
 
     return (
@@ -54,6 +57,7 @@ export default class Display extends React.Component {
         places: [],
         user: this.props.user,//get username from login
         email: this.props.email,//get username from login
+        newData:'',
     };
     }
   
@@ -61,18 +65,14 @@ export default class Display extends React.Component {
       //this.listUserFavRecord(this.state.user); //query user name
       this.listUserFavRecord(this.state.email); // query based on email 
     }
-    
-    //update display when props is received from Add
+
     componentDidUpdate(prevProps) {
-        if (this.props.data !== prevProps.data) {
-          if (this.props.data) {
-            this.setState((prevState) => ({
-              places: [...prevState.places, this.props.data]
-            }));
-          }
-          //console.log('state changed');
+        if (this.props.newData !== prevProps.newData) {
+            this.setState({ newData: this.props.newData });
         }
-      }
+    }
+    
+
   
     async listUserFavRecord(user) {
         const query = `

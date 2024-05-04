@@ -10,6 +10,7 @@ export default class Add extends React.Component {
       description: '',
       rating: '',
       type: '',
+      newData:'',
       showDisplay: false,
       user: this.props.user,
       email: this.props.email,
@@ -19,22 +20,24 @@ export default class Add extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
 	}
 
-  async handleSubmit(e){
+  handleSubmit(e){
     e.preventDefault();
     //organize form values as parameter to addInput
-    const placeDetails ={
-      name: this.state.name,
-      review: this.state.review,
-      description: this.state.description,
-      rating: parseInt(this.state.rating),
-      type: this.state.type,
+    const {} = this.state;
+    const { name, review, description, rating, type, user, email } = this.state;
+    const placeDetails={
+      name,
+      review,
+      description,
+      rating: parseInt(rating),
+      type,
       created: new Date(),
       dataset:'user-gen',
-      user: this.state.user,
-      email: this.state.email,
+      user,
+      email
     };
-    await this.addInput(placeDetails);
-    //clear
+    this.addInput(placeDetails);
+   
     this.setState({
       name: '',
       review: '',
@@ -50,9 +53,8 @@ export default class Add extends React.Component {
   };
 
   handleInputChange(e){
-    const {name, value} = e.target;
     this.setState({
-      [name]: value
+      [e.target.name]: e.target.value
     });
   };
 
@@ -66,9 +68,8 @@ export default class Add extends React.Component {
       `;
     //construct input data placeDetails
     const res = await graphQLFetch(query, {placeDetails});
-    console.log(res);
+    console.log('placedetails:',res);
   }
-  
 
   render(){
     return (
@@ -137,11 +138,10 @@ export default class Add extends React.Component {
                   </select>
                 
                   <div className="button-container">
-                    <button className="btn btn-danger m-2">Add</button>
+                    <button type="submit" className="btn btn-danger m-2">Add</button>
                   </div>
               </form>
             </div>
-            {this.state.showDisplay && <Display newData={this.state.newData}/>}
         </div>);
 	}
 }

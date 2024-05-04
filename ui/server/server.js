@@ -43,9 +43,9 @@ const resolvers = {
 async function deleteFavouritePlace(_,{placeName}){
   //check if id(or name) in places(or favlist)
   //if exist, delete from db.collection.places
-  const existed = await db.collection('places').findOne({name:placeName});
+  const existed = await db.collection('places').findOne({email:placeName});
   if (existed) {
-    await db.collection('places').deleteOne({name:placeName});
+    await db.collection('places').deleteOne({email:placeName});
     await db.collection('favlist').deleteOne({name:placeName});//update db so that can add again
     console.log('Deleted:');
     return true 
@@ -56,12 +56,13 @@ async function deleteFavouritePlace(_,{placeName}){
 
 async function addFavouritePlace(_, {placeDetails}) {
   //check if user already added in fav list
-  const favlisted = await db.collection('favlist').findOne({email:placeDetails.email});
+  const favlisted = await db.collection('favlist').findOne({name:placeDetails.name});
+  console.log('favlist:',favlisted);
   
   if (!favlisted){
     placeDetails.id = await getNextSequence('places');
-    await db.collection('favlist').insertOne({ name: placeDetails.name});
     const result = await db.collection('places').insertOne(placeDetails);
+    await db.collection('favlist').insertOne({ name: placeDetails.name});
     console.log('Added:',result.ops[0]);
     return true
   }
