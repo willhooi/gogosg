@@ -31,7 +31,7 @@ export default class Add extends React.Component {
       created: new Date(),
       dataset:'user-gen',
       user: this.state.user,
-      email: this.state.user,
+      email: this.state.email,
     };
     await this.addInput(placeDetails);
     //clear

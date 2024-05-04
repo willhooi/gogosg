@@ -100,6 +100,7 @@ export default class PlaceCard extends React.Component {
         const placeDetails = { name, review, rating, description, created, type, dataset, user, email};
         const res = await graphQLFetch(query, {placeDetails});
         console.log('Added ok:',res.addFavouritePlace);
+        //check if already added
         (res.addFavouritePlace)?
         this.setState({
             buttonDisabled: res.addFavouritePlace,

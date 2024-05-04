@@ -34,8 +34,7 @@ function PlaceCard(props) {
                     <p className="card-text mb-1">Review: {place.review}</p>
                     <p className="card-text mb-1">Rating: {place.rating}</p>
                     <p className="card-text mb-0">Date: {createdDate}</p>
-                    <p className="card-text mb-0">Added by: {place.user}</p>
-                    <p className="card-text mb-0">Added by: {place.email}</p>
+                    <p className="card-text mb-0">Added by:{place.user}({place.email})</p>
 
                 </div>
                 <div className="button-container">
