@@ -11,6 +11,7 @@ type Place {
   type: String
   dataset: String
   user: String
+  email: String
 }
 
 input PlaceInputs {
@@ -26,6 +27,7 @@ input PlaceDetailsInputs {
   type: String
   dataset: String
   user: String
+  email: String
 
 }
 

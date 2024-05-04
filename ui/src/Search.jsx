@@ -57,7 +57,7 @@ export default class Search extends React.Component {
                 <button className="btn btn-danger m-2">Search</button>
               </form>
           </div>
-            <ShowPlaces places={this.props.places} key={this.state.key} user={this.props.user} />
+            <ShowPlaces places={this.props.places} key={this.state.key} user={this.props.user} email={this.props.email} />
         </div>
       );
     }

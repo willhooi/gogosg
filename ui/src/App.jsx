@@ -141,15 +141,20 @@ class GoGoSG extends React.Component {
                   <Route path="/home" component={Homepage} />
                   <Route path="/showplaces" 
                     render={(props) => <Display {...props} 
-                    user={this.state.user.name} />} />
+                    user={this.state.user.name} 
+                    email={this.state.user.email} 
+                    />} />
                   <Route path="/addplaces" 
                     render={(props) => <Add {...props} 
-                    user={this.state.user.name} />} />
+                    user={this.state.user.name} 
+                    email={this.state.user.email} 
+                    />} />
                   <Route path="/search" 
                     render={(props) => <Search {...props} 
                     searchplaces={this.searchplaces} 
                     places={this.state.searchplaces}
                     user={this.state.user.name}
+                    email={this.state.user.email}
                      />} />
                 </Switch>
               </Router>

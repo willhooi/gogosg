@@ -52,9 +52,11 @@ print('Inserted', count, 'places');
 
 //initialize favourite list for names
 const initialFavourite = [
+  /*
     {name: 'Kimchi Express'}, 
     {name: 'Final Desti-Nasi'},  
     {name: 'Hotel Jiakalifornia'},
+    */
 ];
 db.favlist.deleteMany({});
 db.favlist.insertMany(initialFavourite);

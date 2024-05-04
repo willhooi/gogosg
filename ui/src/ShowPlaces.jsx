@@ -7,6 +7,7 @@ export default function ShowPlaces(props) {
 	  	key={index} 
 		place={place}
 		user={props.user}
+		email={props.email}
 		/>
 	));
 	console.log('user passed to showplaces:',props.user);

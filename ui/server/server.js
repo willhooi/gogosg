@@ -52,8 +52,6 @@ async function deleteFavouritePlace(_,{placeName}){
   }
   console.log('Not found');
   return false;
-
- 
 }
 
 async function addFavouritePlace(_, {placeDetails}) {
@@ -82,7 +80,7 @@ async function listFavPlaceName() {
 }
 
 async function listUserFavRecord(_,{user}) {
-  const userFavRecord = await db.collection('places').find({user:user}).toArray();
+  const userFavRecord = await db.collection('places').find({email:user}).toArray();//search by email
   return userFavRecord;
 }
 

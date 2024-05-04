@@ -12,6 +12,8 @@ export default class Add extends React.Component {
       type: '',
       showDisplay: false,
       user: this.props.user,
+      email: this.props.email,
+
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,6 +31,7 @@ export default class Add extends React.Component {
       created: new Date(),
       dataset:'user-gen',
       user: this.state.user,
+      email: this.state.user,
     };
     await this.addInput(placeDetails);
     //clear
@@ -41,6 +44,7 @@ export default class Add extends React.Component {
       newData: placeDetails,
       showDisplay:true,
       user:'',
+      email:'',
     });
    
   };

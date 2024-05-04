@@ -35,6 +35,7 @@ function PlaceCard(props) {
                     <p className="card-text mb-1">Rating: {place.rating}</p>
                     <p className="card-text mb-0">Date: {createdDate}</p>
                     <p className="card-text mb-0">Added by: {place.user}</p>
+                    <p className="card-text mb-0">Added by: {place.email}</p>
 
                 </div>
                 <div className="button-container">
@@ -53,12 +54,13 @@ export default class Display extends React.Component {
       this.state = { 
         places: [],
         user: this.props.user,//get username from login
+        email: this.props.email,//get username from login
     };
     }
   
     componentDidMount() {
-      //this.loadData();
-      this.listUserFavRecord(this.state.user); //query user personal fav record instead
+      //this.listUserFavRecord(this.state.user); //query user name
+      this.listUserFavRecord(this.state.email); // query based on email 
     }
     
     //update display when props is received from Add
@@ -73,29 +75,6 @@ export default class Display extends React.Component {
         }
       }
   
-    async loadData() {
-      const query = `
-      {
-        listFavourites {
-          id
-          name
-          description
-          review
-          rating
-          created 
-          type
-          dataset
-          user
-        }
-      }
-      `;
-      const data = await graphQLFetch(query);
-      if (data) {
-        this.setState({ places: data.listFavourites });
-       // console.log('Fav places state:',this.state.places);
-      }
-    }
-
     async listUserFavRecord(user) {
         const query = `
         query listUserFavRecord($user:String){
@@ -109,6 +88,7 @@ export default class Display extends React.Component {
                 type
                 dataset
                 user
+                email
             }
         }
         `;
@@ -131,7 +111,7 @@ export default class Display extends React.Component {
 
     render() {
         const placesCards = this.state.places.map((place, index) => (
-            <PlaceCard key={index} place={place} onDelete={this.deleteFavourite} user={this.state.user}/>
+            <PlaceCard key={index} place={place} onDelete={this.deleteFavourite} user={this.state.user} email={this.state.email}/>
         ));
 
         const cardRows = [];

@@ -9,7 +9,8 @@ export default class PlaceCard extends React.Component {
             placeName: '',
             buttonDisabled:false,
             alreadyAdded: false,
-            user:this.props.user
+            user:this.props.user,
+            email:this.props.email
         };
         this.fetchImage = this.fetchImage.bind(this);
         this.handler = this.handler.bind(this);
@@ -94,8 +95,9 @@ export default class PlaceCard extends React.Component {
         const review = reviews && reviews.length > 0 ? reviews[0].text : 'No reviews available';
         const created = new Date();
         const user = this.state.user;
+        const email = this.state.email;
         //console.log('user passed to placedetails:',user);
-        const placeDetails = { name, review, rating, description, created, type, dataset, user};
+        const placeDetails = { name, review, rating, description, created, type, dataset, user, email};
         const res = await graphQLFetch(query, {placeDetails});
         console.log('Added ok:',res.addFavouritePlace);
         (res.addFavouritePlace)?
