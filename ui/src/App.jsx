@@ -25,7 +25,7 @@ class GoGoSG extends React.Component {
   //GOOGLE SIGN-IN
   initButton(){
     google.accounts.id.initialize({
-      client_id: "295714145010-s121asiiqgntju3b7km0mja5lef7b80j.apps.googleusercontent.com",
+      client_id: "29571414xxxxxja5lef7b80j.apps.googleusercontent.com", //replace with actual client_id
       callback: this.handleCallbackResponse   
     });
   }
@@ -72,7 +72,7 @@ class GoGoSG extends React.Component {
           'Host': 'api.stb.gov.sg',
           'Accept': 'application/json',
           'X-Content-Language':'en',
-          'X-API-Key':'gS8i7oE7GLfMLZnnA0tZOwXTNSDgPqwB',
+          'X-API-Key':'gSxxxxxxxxxxgPqwB', //replace with actual API key
           },
       });
       const data = await response.json();	
