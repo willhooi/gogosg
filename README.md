@@ -98,7 +98,7 @@ Addtional Features include:
 3. [Google Identity Sign In API](https://developers.google.com/identity/sign-in/web/sign-in) to sign in users as login using their Google accounts.
 
 ## Shared Coding Guidelines
-* To start, clone remotely ```git clone https://github.com/IT5007-2320/course-project-whlws.git```
+* To start, clone remotely ```git clone https://github.com/willhooi/gogosg.git```
 * Next, create a branch with ```git checkout -b <new branch name>```
 * After updating, remember to add & commit:
 - ```git add -A``` 
@@ -114,15 +114,15 @@ Addtional Features include:
 * To delete branch that is unused from remote/local: ``git branch -D <name of branch to be deleted>``
 
 ## To start web app
-* Clone to local directory: ``git clone https://github.com/IT5007-2320/course-project-whlws.git``
+* Clone to local directory: ``git clone https://github.com/willhooi/gogosg.git``
 * At directory, install dependencies ``npm install``
 * If have any error issues, can try ``nvm install 22.0.0`` first. 
 * Run auto-build scripts that sets up MongoDB, initialize DB, compile and start ``npm run build``
 * At browser to go ``http://localhost:3000``
 * Summary:
   ```shell
-  git clone https://github.com/IT5007-2320/course-project-whlws.git
-  cd course-project-whlws/ui
+  git clone https://github.com/willhooi/gogosg.git
+  cd gogosg/ui
   npm install
   npm run build
   ```
